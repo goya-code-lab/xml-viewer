@@ -232,15 +232,15 @@ const App: React.FC = () => {
               {isUploading ? (
                 <div className="upload-loader">読み込み中...</div>
               ) : fileList.length === 0 ? (
-                <div className="empty-drop-area" style={{ paddingTop: '20px' }}>
-                  <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-                    <Archive size={48} className="drop-icon" />
-                    <Folder size={48} className="drop-icon" />
+                <div className="empty-drop-area" style={{ paddingTop: '10px' }}>
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                    <Archive size={40} className="drop-icon" />
+                    <Folder size={40} className="drop-icon" />
                   </div>
-                  <p style={{ fontWeight: 600, fontSize: '1.1rem' }}>
+                  <p style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '4px' }}>
                     ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
                   </p>
-                  <p style={{ fontSize: '0.85rem', color: '#0284c7', marginTop: '12px', textDecoration: 'underline' }}>
+                  <p style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '4px', textDecoration: 'underline' }}>
                     またはクリックしてファイルを選択
                   </p>
                 </div>

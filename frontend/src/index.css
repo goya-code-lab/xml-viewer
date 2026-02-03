@@ -160,13 +160,13 @@ h1 {
   border: 2px dashed #bae6fd;
   background: rgba(240, 249, 255, 0.35);
   border-radius: 20px;
-  padding: 0.75rem;
+  padding: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 140px;
-  max-height: 260px;
+  min-height: 120px;
+  max-height: 240px;
   /* Fixed height for consistency when many files exist */
   overflow-y: auto;
   scrollbar-width: thin;

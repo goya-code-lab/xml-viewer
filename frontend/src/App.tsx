@@ -160,7 +160,8 @@ const App: React.FC = () => {
     }
   };
 
-  const selectXMLFile = (file: XMLFile) => {
+  const selectXMLFile = (e: React.MouseEvent, file: XMLFile) => {
+    e.stopPropagation(); // 不要なファイル選択ダイアログの起動を防止
     setActiveFile(file);
     setStep(3);
   };
@@ -249,7 +250,7 @@ const App: React.FC = () => {
                     <div
                       key={idx}
                       className={`list-item ${activeFile?.path === file.path ? 'selected' : ''}`}
-                      onClick={() => selectXMLFile(file)}
+                      onClick={(e) => selectXMLFile(e, file)}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <FileText size={18} />

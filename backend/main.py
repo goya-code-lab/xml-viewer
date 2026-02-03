@@ -164,13 +164,15 @@ async def view_wrapped(session_id: str, path: str):
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>XML Preview - {path.split('/')[-1]}</title>
         <style>
             body, html {{
                 margin: 0;
                 padding: 0;
-                width: 100vw;
-                height: 100vh;
+                width: 100%;
+                height: 100%;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 background-color: #f8fafc;
                 display: flex;
@@ -183,38 +185,53 @@ async def view_wrapped(session_id: str, path: str):
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 2rem;
+                padding: 0 1rem;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
                 z-index: 1000;
+            }}
+            @media (min-width: 768px) {{
+                .header {{ padding: 0 2rem; }}
             }}
             .title {{
                 font-weight: bold;
                 color: #0c4a6e;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                max-width: 50%;
+                max-width: 40%;
+            }}
+            @media (min-width: 768px) {{
+                .title {{ font-size: 1.1rem; max-width: 50%; }}
             }}
             .controls {{
                 display: flex;
-                gap: 1rem;
+                gap: 0.5rem;
+            }}
+            @media (min-width: 768px) {{
+                .controls {{ gap: 1rem; }}
             }}
             button {{
-                padding: 0.6rem 1.2rem;
+                padding: 0.5rem 0.8rem;
                 border-radius: 8px;
                 border: none;
                 font-weight: 600;
+                font-size: 0.85rem;
                 cursor: pointer;
                 transition: all 0.2s;
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 0.4rem;
+            }}
+            @media (min-width: 768px) {{
+                button {{ padding: 0.6rem 1.2rem; font-size: 0.9rem; gap: 0.5rem; }}
             }}
             .btn-print {{
                 background-color: #0284c7;
                 color: white;
             }}
+            .btn-print span {{ display: none; }}
+            @media (min-width: 768px) {{ .btn-print span {{ display: inline; }} }}
             .btn-print:hover {{
                 background-color: #0369a1;
             }}
@@ -227,16 +244,18 @@ async def view_wrapped(session_id: str, path: str):
             }}
             .document-container {{
                 flex: 1;
-                overflow-y: auto;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
                 background-color: #ffffff;
                 padding: 0;
-                display: block;
             }}
             iframe {{
                 width: 100%;
+                min-width: 100%;
                 min-height: calc(100vh - 80px);
                 border: none;
                 background: white;
+                display: block;
             }}
             @media print {{
                 body {{ display: none !important; }}
@@ -254,8 +273,19 @@ async def view_wrapped(session_id: str, path: str):
             function resizeIframe() {{
                 const iframe = document.querySelector('iframe');
                 if (iframe && iframe.contentWindow && iframe.contentWindow.document.body) {{
-                    const height = iframe.contentWindow.document.body.scrollHeight;
+                    const doc = iframe.contentWindow.document;
+                    const height = doc.documentElement.scrollHeight || doc.body.scrollHeight;
+                    const width = doc.documentElement.scrollWidth || doc.body.scrollWidth;
+                    
                     iframe.style.height = height + 'px';
+                    
+                    // Only expand width if content is wider than container
+                    const containerWidth = document.querySelector('.document-container').clientWidth;
+                    if (width > containerWidth) {{
+                        iframe.style.width = width + 'px';
+                    }} else {{
+                        iframe.style.width = '100%';
+                    }}
                 }}
             }}
 

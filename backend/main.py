@@ -274,11 +274,11 @@ async def view_wrapped(session_id: str, path: str):
             <div class="controls">
                 <button class="btn-print" onclick="triggerPrint()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                    印刷 / PDF保存
+                    <span>印刷 / PDF</span>
                 </button>
                 <button class="btn-close" onclick="window.close()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    閉じる
+                    <span>閉じる</span>
                 </button>
             </div>
         </div>

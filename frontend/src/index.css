@@ -165,8 +165,8 @@ h1 {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 180px;
-  max-height: 320px;
+  min-height: 140px;
+  max-height: 260px;
   /* Fixed height for consistency when many files exist */
   overflow-y: auto;
   scrollbar-width: thin;

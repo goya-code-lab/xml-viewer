@@ -20,6 +20,7 @@ const App: React.FC = () => {
   const [step, setStep] = useState(1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   // Mouse tracking for blobs
   useEffect(() => {
@@ -149,6 +150,16 @@ const App: React.FC = () => {
     }
   };
 
+  const onAreaClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      uploadFiles(e.target.files);
+    }
+  };
+
   const selectXMLFile = (file: XMLFile) => {
     setActiveFile(file);
     setStep(3);
@@ -206,7 +217,17 @@ const App: React.FC = () => {
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
               onDrop={onDrop}
+              onClick={onAreaClick}
+              style={{ cursor: 'pointer' }}
             >
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={onFileChange}
+                style={{ display: 'none' }}
+                multiple
+                accept=".xml,.zip"
+              />
               {isUploading ? (
                 <div className="upload-loader">読み込み中...</div>
               ) : fileList.length === 0 ? (
@@ -217,6 +238,9 @@ const App: React.FC = () => {
                   </div>
                   <p style={{ fontWeight: 600, fontSize: '1.1rem' }}>
                     ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
+                  </p>
+                  <p style={{ fontSize: '0.85rem', color: '#0284c7', marginTop: '12px', textDecoration: 'underline' }}>
+                    またはクリックしてファイルを選択
                   </p>
                 </div>
               ) : (

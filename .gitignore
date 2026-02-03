@@ -1,0 +1,32 @@
+# Root .gitignore for xmlview_web
+
+# Frontend specific
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# Backend specific
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.pytest_cache/
+backend/.venv/
+backend/env/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary/Analysis (already deleted but just in case)
+temp_analysis/
+sample.zip
+test.xml
+ライセンス分析.md

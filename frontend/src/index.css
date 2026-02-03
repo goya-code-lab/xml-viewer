@@ -171,6 +171,12 @@ h1 {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 transparent;
+  cursor: pointer;
+}
+
+.smart-list-container:hover {
+  background: rgba(2, 132, 199, 0.05);
+  border-color: rgba(2, 132, 199, 0.4);
 }
 
 .smart-list-container::-webkit-scrollbar {

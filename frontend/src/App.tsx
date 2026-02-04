@@ -227,7 +227,7 @@ const App: React.FC = () => {
                 onChange={onFileChange}
                 style={{ display: 'none' }}
                 multiple
-                accept=".xml,.zip"
+                accept=".xml,.xsl,.zip"
               />
               {isUploading ? (
                 <div className="upload-loader">読み込み中...</div>

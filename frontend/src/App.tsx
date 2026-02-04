@@ -44,15 +44,9 @@ const App: React.FC = () => {
     const files: File[] = [];
     if (entry.isFile) {
       const file = await new Promise<File>((resolve) => entry.file(resolve));
-      // For backend to respect structure, we might need to set full path
-      // But browser File object is readonly.
-      // We'll use a trick or just rely on the entry's fullPath if we decide to wrap it.
-      // Actually, if we just send files, they won't have folder info unless we manually add it.
-      // We can use a custom property and handles it in FormData.
-      Object.defineProperty(file, 'webkitRelativePath', {
-        value: entry.fullPath.startsWith('/') ? entry.fullPath.substring(1) : entry.fullPath
-      });
-      files.push(file);
+      // entry.fullPath は "/dirname/file.xml" のような形式なので、先頭の / を削る
+      const relativePath = entry.fullPath.startsWith('/') ? entry.fullPath.substring(1) : entry.fullPath;
+      results.push({ file, path: relativePath });
     } else if (entry.isDirectory) {
       const reader = entry.createReader();
       const entries = await new Promise<any[]>((resolve) => {
@@ -69,17 +63,26 @@ const App: React.FC = () => {
         read();
       });
       for (const e of entries) {
-        files.push(...(await traverseDirectory(e)));
+        results.push(...(await traverseDirectory(e)));
       }
     }
-    return files;
+    return results;
   };
 
-  const uploadFiles = async (files: File[] | FileList) => {
-    // Check for at least one XML or ZIP file before sending
+  const uploadFiles = async (files: (File | { file: File, path: string })[] | FileList) => {
     const fileArray = Array.from(files);
-    const hasValidFile = fileArray.some(file => {
-      const name = file.name.toLowerCase();
+
+    // Normalize to an array of { file, path }
+    const normalizedFiles = fileArray.map(f => {
+      if ('file' in f && 'path' in f) return f;
+      const file = f as File;
+      const path = (file as any).webkitRelativePath || file.name;
+      return { file, path };
+    });
+
+    // Check for at least one XML or ZIP file before sending
+    const hasValidFile = normalizedFiles.some(f => {
+      const name = f.file.name.toLowerCase();
       return name.endsWith('.xml') || name.endsWith('.zip');
     });
 
@@ -90,10 +93,8 @@ const App: React.FC = () => {
 
     setIsUploading(true);
     const formData = new FormData();
-    fileArray.forEach(file => {
-      // Use webkitRelativePath if available to keep folder structure
-      const path = (file as any).webkitRelativePath || file.name;
-      formData.append('files', file, path);
+    normalizedFiles.forEach(f => {
+      formData.append('files', f.file, f.path);
     });
 
     try {
@@ -123,30 +124,32 @@ const App: React.FC = () => {
     e.preventDefault();
     setIsDragging(false);
 
+    // Get entries synchronously to avoid DataTransfer being cleared
     const items = e.dataTransfer.items;
-    if (items) {
-      const allFiles: File[] = [];
+    if (items && items.length > 0 && items[0].webkitGetAsEntry) {
+      const entries = [];
       for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        if (item.kind === 'file') {
-          const entry = item.webkitGetAsEntry();
-          if (entry) {
-            allFiles.push(...(await traverseDirectory(entry)));
-          }
-        }
+        const entry = items[i].webkitGetAsEntry();
+        if (entry) entries.push(entry);
       }
+
+      const allFiles = [];
+      for (const entry of entries) {
+        allFiles.push(...(await traverseDirectory(entry)));
+      }
+
       if (allFiles.length > 0) {
         uploadFiles(allFiles);
         return;
       }
     }
 
-    // Fallback
+    // Fallback or multiple individual files without complex traversal
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
       uploadFiles(files);
     } else {
-      alert('ZIPファイルまたはフォルダをドロップしてください。');
+      alert('読み込み可能なファイルをドロップしてください。');
     }
   };
 

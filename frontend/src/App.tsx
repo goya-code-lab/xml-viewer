@@ -386,6 +386,43 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        {/* Usage Guide Section */}
+        <section className="guide-section">
+          <h2 className="guide-title">はじめての方へ：かんたん3ステップ</h2>
+          <div className="guide-steps">
+            <div className="guide-step">
+              <div className="guide-icon-wrapper">
+                <Download size={32} />
+                <span className="guide-step-number-badge">1</span>
+              </div>
+              <h4>用意する</h4>
+              <p>e-Gov等から「公文書（ZIP形式）」をダウンロード。解凍は不要です。</p>
+            </div>
+            <div className="guide-arrow">
+              <div className="guide-arrow-body"></div>
+            </div>
+            <div className="guide-step">
+              <div className="guide-icon-wrapper">
+                <MousePointerClick size={32} />
+                <span className="guide-step-number-badge">2</span>
+              </div>
+              <h4>入れる</h4>
+              <p>ZIPファイルをそのまま、上のエリアにドロップまたは選択してください。</p>
+            </div>
+            <div className="guide-arrow">
+              <div className="guide-arrow-body"></div>
+            </div>
+            <div className="guide-step">
+              <div className="guide-icon-wrapper">
+                <Eye size={32} />
+                <span className="guide-step-number-badge">3</span>
+              </div>
+              <h4>見る</h4>
+              <p>読み込まれたファイル名をクリック。最適な形式で表示・印刷できます。</p>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="faq-section">
           <h2 className="faq-title">よくあるご質問</h2>

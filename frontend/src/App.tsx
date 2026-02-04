@@ -1,9 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { FileText, Printer, Archive, Layout, Folder, ShieldCheck, X, Info, ExternalLink, Plus } from 'lucide-react';
+import { FileText, Printer, Archive, Layout, Folder, ShieldCheck, X, Info, ExternalLink, Plus, ChevronDown } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
+const faqs = [
+  {
+    q: "アップロードしたファイルはサーバーに保存されますか？",
+    a: "いいえ。本サービスは表示専用のツールであり、解析完了後はセッション終了時（ブラウザを閉じた際や一定時間経過後）に速やかかつ自動的に削除されます。当方がデータを蓄積・転記することはありません。"
+  },
+  {
+    q: "外部からデータを見られる心配はありませんか？",
+    a: "通信はすべてSSL（暗号化）されており、第三者が内容を傍受することはできません。また、各ユーザーに個別のセッションを発行しているため、他のユーザーとデータが混ざることもありません。"
+  },
+  {
+    q: "e-Gov以外で作成したXMLも表示できますか？",
+    a: "はい。e-Taxや法令標準XMLなど、XSLスタイルシートが同梱または指定されている標準的なXMLファイルであれば、幅広い行政文書に対応しています。"
+  },
+  {
+    q: "ZIPファイルをそのままアップロードできますか？",
+    a: "はい。e-Govからダウンロードした「三点セット（XML, XSL, PDF）」が含まれるZIPファイルを、解凍せずにそのままドラッグ＆ドロップ（または選択）するだけでプレビュー可能です。"
+  },
+  {
+    q: "スマートフォンでも利用できますか？",
+    a: "はい、可能です。スマホの場合は「タップしてファイルを選択」からファイルを選んでいただけます。外出先での急ぎの内容確認にも最適です。"
+  },
+  {
+    q: "法人や士業事務所で仕事に使っても問題ありませんか？",
+    a: "はい、商用・業務利用ともに制限はありません。日々の業務効率化にお役立てください。"
+  }
+];
 
 interface XMLFile {
   name: string;
@@ -20,7 +47,33 @@ const App: React.FC = () => {
   const [step, setStep] = useState(1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  // SEO: FAQ Schema (JSON-LD)
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a
+        }
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.innerHTML = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   // Mouse tracking for blobs
   useEffect(() => {
@@ -332,6 +385,29 @@ const App: React.FC = () => {
             アップロードされたファイルは個別のセッションで隔離して処理され、他者から閲覧されることはありません。また、2時間後にサーバーから自動的に完全削除されます。
           </div>
         </div>
+
+        {/* FAQ Section */}
+        <section className="faq-section">
+          <h2 className="faq-title">よくあるご質問</h2>
+          <div className="faq-list">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className={`faq-item ${openFaqIndex === idx ? 'open' : ''}`}>
+                <button
+                  className="faq-question"
+                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown size={18} className="faq-icon" />
+                </button>
+                {openFaqIndex === idx && (
+                  <div className="faq-answer">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
 
         <footer style={{
           marginTop: '4rem',

@@ -257,7 +257,7 @@ const App: React.FC = () => {
 
       <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
         <header className="header-section">
-          <h1>電子公文書XMLビューア / e-Gov XMLブラウザ</h1>
+          <h1>電子公文書XMLビューア</h1>
           <p className="description pc-only">
             e-Gov、e-Tax、法令標準XMLからXBRLまで、行政手続きのXMLファイルをこれ一つで。
             <br />最適なスタイルシート（XSL）を自動適用し、読みやすくプレビューできます。

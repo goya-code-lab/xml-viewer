@@ -203,15 +203,16 @@ const App: React.FC = () => {
       </div>
 
       <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
-        <div className="header-section">
-          <h1>かんたん公文書XMLブラウザ</h1>
+        <header className="header-section">
+          <h1>公文書XMLブラウザ</h1>
           <p className="description pc-only">
-            XML/ZIPファイルをドロップするだけで、最適なスタイルでプレビューできます。
+            e-Gov、e-Tax、法令標準XMLからXBRLまで、行政手続きのXMLファイルをこれ一つで。
+            <br />最適なスタイルシート（XSL）を自動適用し、読みやすくプレビューできます。
           </p>
           <p className="description mobile-only">
-            XML/ZIPファイルを選んで、最適なスタイルでプレビューできます。
+            e-Govや法令XML等の公文書ファイルを、ブラウザで即座に読みやすく表示します。
           </p>
-        </div>
+        </header>
 
         <div className="card">
           {/* Step 1: XMLを選択（兼ドロップゾーン） */}
@@ -396,12 +397,26 @@ const App: React.FC = () => {
               {activeTab === 'about' && (
                 <div className="content-page">
                   <h2>本サイトについて</h2>
-                  <h3>本サイトの目的</h3>
-                  <p>「かんたん公文書XMLブラウザ」は、自治体や公的機関から発行される公文書XMLファイルを、専門的な知識なしにブラウザで美しく、読みやすく表示するために開発されました。</p>
+                  <h3>開発の目的</h3>
+                  <p>「公文書XMLブラウザ」は、e-Gov（電子政府の総合窓口）やe-Tax、自治体から発行される電子公文書XMLを、専用ソフトなしで美しく閲覧するために開発されました。</p>
+                  <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、独自のプレビュー技術で解決します。</p>
+
                   <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(2, 132, 199, 0.1)', margin: '2rem 0' }}>
-                    <h3 style={{ marginTop: 0, color: '#0284c7' }}>Windows版（オフライン対応）のご案内</h3>
-                    <p>より高い機密性が求められる業務や、インターネット接続が制限されている環境でのご利用のために、同一の表示機能を備えた<strong>「かんたん公文書XMLブラウザ (Windows版)」</strong>の販売を予定しております。</p>
-                    <p>完全オフラインで動作し、外部へのデータ送信は一切行われません。ご興味のある方は、お問い合わせフォームよりお気軽にご連絡ください。</p>
+                    <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書の「三点セット」に対応</h3>
+                    <p>日本の電子公文書は通常、<strong>XMLデータ、XSLスタイルシート、PDF</strong>の三つのファイルで構成されます（三点セット）。</p>
+                    <p>本ツールは、これらが同梱されたZIPファイルをドロップするだけで、内部の構造を解析し、最適なスタイルを自動適用してプレビューします。</p>
+                  </div>
+
+                  <h3>主な対象ドキュメント</h3>
+                  <ul>
+                    <li><strong>e-Gov 公文書</strong>: 社会保険料額通知書、決定通知書、加入者情報等</li>
+                    <li><strong>e-Tax / eLTAX</strong>: 電子申告・申請データのXMLプレビュー</li>
+                    <li><strong>法令標準XML / XBRL</strong>: 構造化された法令データや財務情報の簡易閲覧</li>
+                  </ul>
+
+                  <div style={{ background: 'rgba(15, 23, 42, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }}>
+                    <h3 style={{ marginTop: 0 }}>Windows版（オフライン・機密業務対応）</h3>
+                    <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版の提供も予定しております。ご要望は下記フォームより承ります。</p>
                   </div>
                   <h3>動作環境</h3>
                   <ul>

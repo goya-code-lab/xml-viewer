@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xml-view.goya-code-lab.jp/sitemap.xml

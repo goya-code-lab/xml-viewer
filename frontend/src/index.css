@@ -431,8 +431,24 @@ footer a:hover {
   }
 }
 
+.mobile-only {
+  display: none !important;
+}
+
 /* --- Mobile Compact Mode (approx. 75% Scale) --- */
 @media screen and (max-width: 768px) {
+  .pc-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+
+  .mobile-only.inline {
+    display: inline !important;
+  }
+
   body {
     padding: 1.5rem 0.75rem;
   }

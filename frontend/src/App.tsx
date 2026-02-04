@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { FileText, Printer, Archive, Layout, Upload, Folder, ShieldCheck, X, Info, ExternalLink } from 'lucide-react';
+import { FileText, Printer, Archive, Layout, Upload, Folder, ShieldCheck, X, Info, ExternalLink, Plus } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
@@ -205,7 +205,12 @@ const App: React.FC = () => {
       <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
         <div className="header-section">
           <h1>かんたん公文書XMLブラウザ</h1>
-          <p className="description">公文書のXMLとスタイルシート（XSL）を読み込み、ブラウザで読みやすい形式に自動変換して表示します</p>
+          <p className="description pc-only">
+            XML/ZIPファイルをドロップするだけで、最適なスタイルでプレビューできます。
+          </p>
+          <p className="description mobile-only">
+            XML/ZIPファイルを選んで、最適なスタイルでプレビューできます。
+          </p>
         </div>
 
         <div className="card">
@@ -240,11 +245,14 @@ const App: React.FC = () => {
                     <Archive size={40} className="drop-icon" />
                     <Folder size={40} className="drop-icon" />
                   </div>
-                  <p style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '4px' }}>
+                  <p className="pc-only" style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '4px' }}>
                     ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
                   </p>
-                  <p style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '4px', textDecoration: 'underline' }}>
+                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '4px', textDecoration: 'underline' }}>
                     またはクリックしてファイルを選択
+                  </p>
+                  <p className="mobile-only" style={{ fontWeight: 600, fontSize: '1rem', color: '#0284c7', textDecoration: 'underline', marginTop: '8px' }}>
+                    タップしてファイルを選択
                   </p>
                 </div>
               ) : (
@@ -262,7 +270,9 @@ const App: React.FC = () => {
                     </div>
                   ))}
                   <div className="drop-hint">
-                    <Upload size={14} /> ファイルをドロップして入れ替え
+                    <Plus size={14} />
+                    <span className="pc-only">ZIPまたはフォルダをさらに対象に追加</span>
+                    <span className="mobile-only inline">ファイルをさらに対象に追加</span>
                   </div>
                 </div>
               )}

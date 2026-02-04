@@ -40,8 +40,8 @@ const App: React.FC = () => {
     }
   }, [activeTab]);
 
-  const traverseDirectory = async (entry: any): Promise<File[]> => {
-    const files: File[] = [];
+  const traverseDirectory = async (entry: any): Promise<{ file: File, path: string }[]> => {
+    const results: { file: File, path: string }[] = [];
     if (entry.isFile) {
       const file = await new Promise<File>((resolve) => entry.file(resolve));
       // entry.fullPath は "/dirname/file.xml" のような形式なので、先頭の / を削る
@@ -126,7 +126,7 @@ const App: React.FC = () => {
 
     // Get entries synchronously to avoid DataTransfer being cleared
     const items = e.dataTransfer.items;
-    if (items && items.length > 0 && items[0].webkitGetAsEntry) {
+    if (items && items.length > 0 && typeof items[0].webkitGetAsEntry === 'function') {
       const entries = [];
       for (let i = 0; i < items.length; i++) {
         const entry = items[i].webkitGetAsEntry();

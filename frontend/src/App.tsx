@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { FileText, Printer, Archive, Layout, Upload, Folder, ShieldCheck, X, Info, ExternalLink, Plus } from 'lucide-react';
+import { FileText, Printer, Archive, Layout, Folder, ShieldCheck, X, Info, ExternalLink, Plus } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 

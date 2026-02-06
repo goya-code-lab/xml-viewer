@@ -203,7 +203,7 @@ h1 {
   text-align: center;
   cursor: pointer;
   padding: 1rem;
-  gap: 0.5rem;
+  gap: 2px;
 }
 
 .drop-icon {

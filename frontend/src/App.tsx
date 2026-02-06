@@ -313,17 +313,17 @@ const App: React.FC = () => {
                 <div className="upload-loader">読み込み中...</div>
               ) : fileList.length === 0 ? (
                 <div className="empty-drop-area">
-                  <div style={{ display: 'flex', gap: '8px', marginBottom: '2px' }}>
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
                     <Archive size={40} className="drop-icon" />
                     <Folder size={40} className="drop-icon" />
                   </div>
-                  <p className="pc-only" style={{ fontWeight: 600, fontSize: '1rem', margin: 0 }}>
+                  <p className="pc-only" style={{ fontWeight: 600, fontSize: '1rem', margin: 0, lineHeight: 1.3 }}>
                     ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
                   </p>
-                  <p className="pc-only" style={{ fontSize: '0.75rem', color: '#64748b', margin: 0 }}>
+                  <p className="pc-only" style={{ fontSize: '0.75rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
                     （Web版：1回最大10ファイルまで）
                   </p>
-                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '4px', textDecoration: 'underline' }}>
+                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', margin: 0, textDecoration: 'underline' }}>
                     またはクリックしてファイルを選択
                   </p>
                   <p className="mobile-only" style={{ fontWeight: 600, fontSize: '1rem', color: '#0284c7', textDecoration: 'underline', margin: 0 }}>

@@ -552,8 +552,8 @@ const App: React.FC = () => {
                   <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、独自のプレビュー技術で解決します。</p>
 
                   <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(2, 132, 199, 0.1)', margin: '2rem 0' }}>
-                    <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書の「三点セット」に対応</h3>
-                    <p>日本の電子公文書は通常、<strong>XMLデータ、XSLスタイルシート、PDF</strong>の三つのファイルで構成されます（三点セット）。</p>
+                    <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書のXMLプレビューに対応</h3>
+                    <p>日本の電子公文書は通常、<strong>XMLデータとXSLスタイルシート</strong>の組み合わせで構成されています。</p>
                     <p>本ツールは、これらが同梱されたZIPファイルをドロップするだけで、内部の構造を解析し、最適なスタイルを自動適用してプレビューします。</p>
                   </div>
 

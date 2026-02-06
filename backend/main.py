@@ -142,9 +142,14 @@ async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
         })
         
     sorted_xml_files = sorted(xml_files, key=lambda x: x["name"])
+    total_count = len(sorted_xml_files)
     limited_xml_files = sorted_xml_files[:10]
         
-    return {"message": "Files uploaded successfully", "files": limited_xml_files}
+    return {
+        "message": "Files uploaded successfully", 
+        "files": limited_xml_files,
+        "total_count": total_count
+    }
 
 @app.get("/view/{session_id}/{file_path:path}")
 async def view_xml(session_id: str, file_path: str):

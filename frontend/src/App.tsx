@@ -59,6 +59,7 @@ const App: React.FC = () => {
   const [fileList, setFileList] = useState<XMLFile[]>([]);
   const [activeFile, setActiveFile] = useState<XMLFile | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [totalFileCount, setTotalFileCount] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [step, setStep] = useState(1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -169,6 +170,7 @@ const App: React.FC = () => {
     try {
       const response = await axios.post(`${API_BASE}/upload/${sessionId}`, formData);
       setFileList(response.data.files);
+      setTotalFileCount(response.data.total_count || response.data.files.length);
       setActiveFile(null); // Reset selection
       setStep(2);
     } catch (error: any) {
@@ -318,11 +320,14 @@ const App: React.FC = () => {
                   <p className="pc-only" style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '4px' }}>
                     ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
                   </p>
-                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '4px', textDecoration: 'underline' }}>
+                  <p className="pc-only" style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '2px' }}>
+                    （Web版：1回最大10ファイルまで）
+                  </p>
+                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', marginTop: '6px', textDecoration: 'underline' }}>
                     またはクリックしてファイルを選択
                   </p>
                   <p className="mobile-only" style={{ fontWeight: 600, fontSize: '1rem', color: '#0284c7', textDecoration: 'underline', marginTop: '8px' }}>
-                    タップしてファイルを選択
+                    タップしてファイルを選択（最大10件）
                   </p>
                 </div>
               ) : (
@@ -339,6 +344,22 @@ const App: React.FC = () => {
                       </div>
                     </div>
                   ))}
+                  {totalFileCount > 10 && (
+                    <div style={{
+                      margin: '8px 10px',
+                      padding: '10px',
+                      background: 'rgba(245, 158, 11, 0.1)',
+                      border: '1px solid rgba(245, 158, 11, 0.3)',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      color: '#b45309'
+                    }}>
+                      <div style={{ fontWeight: 700, marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Info size={14} /> 表示制限のお知らせ
+                      </div>
+                      Web版の制限により、見つかった {totalFileCount} 件のうち先頭の10件のみ表示しています。全件の一括処理はWindows版をご利用ください。
+                    </div>
+                  )}
                   <div className="drop-hint">
                     <Plus size={14} />
                     <span className="pc-only">ZIPまたはフォルダをさらに対象に追加</span>

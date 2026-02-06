@@ -141,10 +141,10 @@ async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
             "has_xsl": xsl_path is not None and xsl_path.exists()
         })
         
-    if not xml_files:
-        raise HTTPException(status_code=400, detail="XMLファイルが見つかりませんでした。ZIPまたはフォルダ内にXMLが含まれているか確認してください。")
+    sorted_xml_files = sorted(xml_files, key=lambda x: x["name"])
+    limited_xml_files = sorted_xml_files[:10]
         
-    return {"message": "Files uploaded successfully", "files": sorted(xml_files, key=lambda x: x["name"])}
+    return {"message": "Files uploaded successfully", "files": limited_xml_files}
 
 @app.get("/view/{session_id}/{file_path:path}")
 async def view_xml(session_id: str, file_path: str):

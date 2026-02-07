@@ -629,7 +629,7 @@ const App: React.FC = () => {
                       <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                         <td style={{ padding: '12px' }}>利用料金</td>
                         <td style={{ padding: '12px' }}>無料</td>
-                        <td style={{ padding: '12px', fontWeight: 700 }}>3,300円 (税込)</td>
+                        <td style={{ padding: '12px', fontWeight: 700 }}>1,980円 (税込)</td>
                       </tr>
                       <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                         <td style={{ padding: '12px' }}>利用期限</td>
@@ -665,7 +665,7 @@ const App: React.FC = () => {
 
                   <div style={{ border: '1px solid #e2e8f0', borderRadius: '24px', padding: '2rem', margin: '2rem 0', textAlign: 'center' }}>
                     <div style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.5rem' }}>買い切りライセンス</div>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem' }}>¥3,300 <span style={{ fontSize: '1rem', fontWeight: 400 }}> (税込)</span></div>
+                    <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem' }}>¥1,980 <span style={{ fontSize: '1rem', fontWeight: 400 }}> (税込)</span></div>
 
                     <ul style={{ textAlign: 'left', display: 'inline-block', marginBottom: '2rem' }}>
                       <li>✓ 試用期間（30日）の解除</li>

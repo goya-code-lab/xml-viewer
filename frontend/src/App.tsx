@@ -585,7 +585,20 @@ const App: React.FC = () => {
               {activeTab === 'windows' && (
                 <div className="content-page">
                   <h2>電子公文書XMLビューア Windows版</h2>
-                  <p>インターネット接続なしで動作する、高セキュリティなデスクトップアプリケーションです。プロフェッショナルの現場に最適な機能を提供します。</p>
+                  <p>インターネット接続なしで動作する、高セキュリティなデスクトップアプリケーションです。プロフェッショナルな現場に最適な機能を提供します。</p>
+
+                  <div style={{ margin: '2rem 0', textAlign: 'center' }}>
+                    <img
+                      src="/windows_screenshot.png"
+                      alt="Windows版の画面イメージ"
+                      style={{
+                        maxWidth: '100%',
+                        borderRadius: '16px',
+                        boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+                        border: '1px solid rgba(0,0,0,0.05)'
+                      }}
+                    />
+                  </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', margin: '2rem 0' }}>
                     <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>

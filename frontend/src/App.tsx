@@ -680,10 +680,16 @@ const App: React.FC = () => {
                       </a>
                     </div>
 
-                    <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                      ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
-                      ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
-                    </p>
+                    <div style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'left', background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0', marginTop: '1rem' }}>
+                      <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600 }}>領収書について</p>
+                      <p style={{ margin: '0 0 0.5rem 0' }}>・決済完了後、Stripeより領収書メールが自動送信されます。</p>
+                      <p style={{ margin: '0 0 1rem 0' }}>・宛名（会社名等）入りの領収書が必要な方は、決済後に「お問合せフォーム」より決済日と購入メールアドレスを添えてご連絡ください。PDF形式にて発行いたします。</p>
+
+                      <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.8rem', color: '#94a3b8' }}>
+                        ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
+                        ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
+                      </p>
+                    </div>
                   </div>
 
                   <h3>決済の流れ</h3>

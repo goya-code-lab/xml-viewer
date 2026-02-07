@@ -513,32 +513,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <footer style={{
-          marginTop: '4rem',
-          padding: '2rem 0',
-          borderTop: '1px solid rgba(0,0,0,0.05)',
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '24px',
-          flexWrap: 'wrap'
-        }}>
-          <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
-            <Info size={16} /> 本サイトについて
-          </button>
-          <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
-            <ShieldCheck size={16} /> プライバシーポリシー
-          </button>
-          <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
-            <FileText size={16} /> 免責事項
-          </button>
-          {/* GoogleフォームのURL（YOUR_FORM_ID部分）をご自身のものに差し替えてください */}
-          <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
-            <ExternalLink size={16} /> お問い合わせ
-          </a>
-          <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '1rem' }}>
-            © 2026 Goya Code Lab
-          </div>
-        </footer>
       </div>
 
       {/* Modal Overlay */}
@@ -620,7 +594,7 @@ const App: React.FC = () => {
                     </div>
                     <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
                       <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>ファイル数無制限</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem' }}>Web版のような同時表示制限がなく、数百件の公文書も一括で処理可能です。</p>
+                      <p style={{ margin: 0, fontSize: '0.85rem' }}>Web版のような同時表示制限がなく、大量の公文書もリストから選択してスムーズに表示可能です。</p>
                     </div>
                     <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
                       <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>高速ブラウジング</h4>

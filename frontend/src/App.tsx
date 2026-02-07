@@ -693,6 +693,21 @@ const App: React.FC = () => {
                     <li>決済完了後、数分以内にライセンスキーが記載された自動メールが届きます。</li>
                     <li>アプリ起動時にキーを入力すると、Standard版が有効化されます。</li>
                   </ol>
+
+                  <div style={{ marginTop: '2rem', padding: '1.25rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                    <h4 style={{ margin: '0 0 10px 0', fontSize: '0.95rem', color: '#475569' }}>📧 メールが届かない場合</h4>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
+                      決済完了から10分以上経過してもメールが届かない場合は、まず以下の点をご確認ください：
+                    </p>
+                    <ul style={{ margin: '10px 0', fontSize: '0.85rem', color: '#64748b', paddingLeft: '20px' }}>
+                      <li>迷惑メールフォルダや「プロモーション」タブに入っていないか</li>
+                      <li>ご入力いただいたメールアドレスに誤りがなかったか</li>
+                      <li>ドメイン指定受信設定（@goya-code-lab.jp からのメールを許可）</li>
+                    </ul>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
+                      解決しない場合は、こちらの<a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。決済状況を確認の上、速やかにライセンスキーを再送させていただきます。
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

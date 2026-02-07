@@ -66,6 +66,7 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const modalBodyRef = React.useRef<HTMLDivElement>(null);
 
   // Hash Routing
   useEffect(() => {
@@ -523,7 +524,7 @@ const App: React.FC = () => {
             <button className="modal-close" onClick={() => setActiveTab(null)}>
               <X size={24} />
             </button>
-            <div className="modal-body">
+            <div className="modal-body" ref={modalBodyRef}>
               {activeTab === 'privacy' && (
                 <div className="content-page">
                   <h2>プライバシーポリシー</h2>

@@ -33,3 +33,7 @@ test.xml
 
 # Large distribution files
 frontend/public/downloads/
+
+# Secrets
+.env
+backend/.env

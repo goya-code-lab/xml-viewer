@@ -5,14 +5,27 @@ import zipfile
 import re
 import asyncio
 import time
+import stripe
+import resend
 from pathlib import Path
 from typing import List, Optional, Dict
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Request, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from lxml import etree
 from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+
+# 環境変数の読み込み
+load_dotenv()
+
+stripe.api_key = os.getenv("STRIPE_API_KEY")
+resend.api_key = os.getenv("RESEND_API_KEY")
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", "onboarding@resend.dev")
+LICENSE_KEY = os.getenv("LICENSE_KEY", "XMLVIEW-STANDARD-GOYACODE")
+DOWNLOAD_URL = os.getenv("DOWNLOAD_URL", "https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip")
 
 # セッション管理用のルートディレクトリ
 BASE_TEMP_DIR = Path(tempfile.gettempdir()) / "xmlview3_sessions"
@@ -106,6 +119,8 @@ def detect_xsl_path(xml_path: Path) -> Optional[Path]:
         pass
     return None
 
+ALLOWED_EXTENSIONS = {".xml", ".xsl", ".zip"}
+
 @app.post("/upload/{session_id}")
 async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
     session_dir = get_session_dir(session_id)
@@ -118,6 +133,14 @@ async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
             item.unlink()
             
     for file in files:
+        # ファイル拡張子のバリデーション
+        ext = Path(file.filename).suffix.lower()
+        if ext not in ALLOWED_EXTENSIONS:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Unsupported file type: {file.filename}. Only XML, XSL, and ZIP are allowed."
+            )
+
         file_path = session_dir / file.filename
         file_path.parent.mkdir(parents=True, exist_ok=True)
         
@@ -328,6 +351,75 @@ async def view_wrapped(session_id: str, path: str):
     </html>
     """
     return HTMLResponse(content=html_content)
+
+def send_license_email(customer_email: str):
+    """購入者にライセンスキーを自動メールで送付する"""
+    try:
+        params: resend.Emails.SendParams = {
+            "from": f"Goya Code Lab <{SENDER_EMAIL}>",
+            "to": [customer_email],
+            "subject": "【電子公文書XMLビューア】Standard版ライセンスのご案内",
+            "html": f"""
+                <h3>ご購入ありがとうございます</h3>
+                <p>電子公文書XMLビューア Standard版のライセンスをご購入いただき、誠にありがとうございます。</p>
+                
+                <p>以下のライセンスキーを使用して、アプリを有効化してください。</p>
+                
+                <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 1.2rem; border: 1px solid #cbd5e1; margin: 20px 0;">
+                    <strong>{LICENSE_KEY}</strong>
+                </div>
+                
+                <h4>■ アプリのダウンロード</h4>
+                <p>まだアプリをお持ちでない場合は、以下のURLより最新版をダウンロードしてください。</p>
+                <p><a href="{DOWNLOAD_URL}">{DOWNLOAD_URL}</a></p>
+                
+                <h4>■ 有効化の手順</h4>
+                <ol>
+                    <li>アプリを起動します。</li>
+                    <li>試用期間終了のダイアログ、または画面下部の「ライセンスの詳細」ボタンから「ライセンス認証」画面を開きます。</li>
+                    <li>上記のライセンスキーをコピー＆ペーストして「認証」ボタンを押してください。</li>
+                    <li>タイトルバーが「Standard版」に変われば完了です。</li>
+                </ol>
+                
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+                <p style="font-size: 0.9rem; color: #64748b;">
+                    ※このメールは自動送信されています。<br>
+                    ご不明な点がございましたら、公式サイトのお問い合わせフォームよりご連絡ください。<br>
+                    <a href="https://xml-view.goya-code-lab.jp/">https://xml-view.goya-code-lab.jp/</a>
+                </p>
+            """,
+        }
+        resend.Emails.send(params)
+        print(f"Email sent successfully to {customer_email}")
+    except Exception as e:
+        print(f"Failed to send email to {customer_email}: {e}")
+
+@app.post("/webhook/stripe")
+async def stripe_webhook(request: Request, stripe_signature: str = Header(None)):
+    """Stripeからの支払い完了イベントを受け取る"""
+    payload = await request.body()
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, stripe_signature, STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError:
+        # 無効なペイロード
+        raise HTTPException(status_code=400, detail="Invalid payload")
+    except stripe.error.SignatureVerificationError:
+        # 署名検証失敗
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    # 支払い完了イベントを処理
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        customer_email = session.get('customer_details', {}).get('email')
+        
+        if customer_email:
+            print(f"Payment completed for {customer_email}. Fulfilling order...")
+            send_license_email(customer_email)
+    
+    return {"status": "success"}
 
 if __name__ == "__main__":
     import uvicorn

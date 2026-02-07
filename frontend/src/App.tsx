@@ -675,7 +675,7 @@ const App: React.FC = () => {
                     </ul>
 
                     <div style={{ marginBottom: '1.5rem' }}>
-                      <a href="https://buy.stripe.com/test_dummy" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
+                      <a href="https://buy.stripe.com/test_7sYeVc1NdgU84Lg0E4frW00" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
                         カード決済で進む (Stripe)
                       </a>
                     </div>

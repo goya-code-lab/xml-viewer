@@ -63,9 +63,39 @@ const App: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [step, setStep] = useState(1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | null>(null);
+  const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  // Hash Routing
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['privacy', 'terms', 'about', 'windows', 'buy'].includes(hash)) {
+        setActiveTab(hash as any);
+      } else if (!hash) {
+        setActiveTab(null);
+      }
+    };
+
+    // Initial check
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Update hash when activeTab changes
+  useEffect(() => {
+    if (activeTab) {
+      window.location.hash = activeTab;
+    } else {
+      // Avoid adding extra history entry when clearing
+      if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+  }, [activeTab]);
 
   // SEO: FAQ Schema (JSON-LD)
   useEffect(() => {
@@ -566,7 +596,10 @@ const App: React.FC = () => {
 
                   <div style={{ background: 'rgba(15, 23, 42, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }}>
                     <h3 style={{ marginTop: 0 }}>Windows版（オフライン・機密業務対応）</h3>
-                    <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版の提供も予定しております。ご要望は下記フォームより承ります。</p>
+                    <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版を提供しております。</p>
+                    <button onClick={() => setActiveTab('windows')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '10px 20px', borderRadius: '10px', marginTop: '10px' }}>
+                      Windows版の詳細を見る
+                    </button>
                   </div>
                   <h3>動作環境</h3>
                   <ul>
@@ -575,13 +608,145 @@ const App: React.FC = () => {
                   </ul>
                 </div>
               )}
+              {activeTab === 'windows' && (
+                <div className="content-page">
+                  <h2>電子公文書XMLビューア Windows版</h2>
+                  <p>インターネット接続なしで動作する、高セキュリティなデスクトップアプリケーションです。プロフェッショナルの現場に最適な機能を提供します。</p>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', margin: '2rem 0' }}>
+                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>100% オフライン</h4>
+                      <p style={{ margin: 0, fontSize: '0.85rem' }}>データがPCの外に出ることがないため、極めて高い機密性を保持できます。</p>
+                    </div>
+                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>ファイル数無制限</h4>
+                      <p style={{ margin: 0, fontSize: '0.85rem' }}>Web版のような同時表示制限がなく、数百件の公文書も一括で処理可能です。</p>
+                    </div>
+                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>高速ブラウジング</h4>
+                      <p style={{ margin: 0, fontSize: '0.85rem' }}>OSネイティブの動作により、大量のファイルもストレスなく切り替えられます。</p>
+                    </div>
+                  </div>
+
+                  <h3>ご利用プラン</h3>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                    <thead>
+                      <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
+                        <th style={{ padding: '12px' }}>機能</th>
+                        <th style={{ padding: '12px' }}>トライアル版</th>
+                        <th style={{ padding: '12px', color: '#0284c7' }}>Standard版</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={{ padding: '12px' }}>利用料金</td>
+                        <td style={{ padding: '12px' }}>無料</td>
+                        <td style={{ padding: '12px', fontWeight: 700 }}>3,300円 (税込)</td>
+                      </tr>
+                      <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={{ padding: '12px' }}>利用期限</td>
+                        <td style={{ padding: '12px' }}>30日間</td>
+                        <td style={{ padding: '12px' }}>無制限</td>
+                      </tr>
+                      <tr>
+                        <td style={{ padding: '12px' }}>商用・業務利用</td>
+                        <td style={{ padding: '12px' }}>可</td>
+                        <td style={{ padding: '12px' }}>可</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div style={{ background: '#eff6ff', padding: '1.5rem', borderRadius: '20px', textAlign: 'center' }}>
+                    <h4 style={{ marginTop: 0 }}>まずは無料でお試しください</h4>
+                    <p style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>インストール不要。exeファイルをダウンロードして実行するだけです。</p>
+                    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                      <a href="/downloads/xml_viewer.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                        Windows版をダウンロード
+                      </a>
+                      <button onClick={() => setActiveTab('buy')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                        ライセンスを購入する
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {activeTab === 'buy' && (
+                <div className="content-page">
+                  <h2>Standard版ライセンスの購入</h2>
+                  <p>電子公文書XMLビューア Standard版をご検討いただきありがとうございます。</p>
+
+                  <div style={{ border: '1px solid #e2e8f0', borderRadius: '24px', padding: '2rem', margin: '2rem 0', textAlign: 'center' }}>
+                    <div style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.5rem' }}>買い切りライセンス</div>
+                    <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem' }}>¥3,300 <span style={{ fontSize: '1rem', fontWeight: 400 }}> (税込)</span></div>
+
+                    <ul style={{ textAlign: 'left', display: 'inline-block', marginBottom: '2rem' }}>
+                      <li>✓ 試用期間（30日）の解除</li>
+                      <li>✓ 永続的な利用が可能</li>
+                      <li>✓ 同一ユーザーなら複数台PCでも利用可能</li>
+                      <li>✓ 今後のアップデートに対応</li>
+                    </ul>
+
+                    <div style={{ marginBottom: '1.5rem' }}>
+                      <a href="https://buy.stripe.com/test_dummy" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
+                        カード決済で進む (Stripe)
+                      </a>
+                    </div>
+
+                    <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                      ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
+                      ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
+                    </p>
+                  </div>
+
+                  <h3>決済の流れ</h3>
+                  <ol style={{ fontSize: '0.9rem', color: '#475569' }}>
+                    <li>上のボタンからStripe（外部決済サイト）へ進みます。</li>
+                    <li>メールアドレスとクレジットカード情報を入力して決済を完了させます。</li>
+                    <li>決済完了後、数分以内にライセンスキーが記載された自動メールが届きます。</li>
+                    <li>アプリ起動時にキーを入力すると、Standard版が有効化されます。</li>
+                  </ol>
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
+
+      {/* Footer Navigation Updates */}
+      <footer style={{
+        marginTop: '4rem',
+        padding: '2rem 0',
+        borderTop: '1px solid rgba(0,0,0,0.05)',
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '24px',
+        flexWrap: 'wrap'
+      }}>
+        <button onClick={() => setActiveTab('windows')} style={footerLinkStyle}>
+          <Layout size={16} /> Windows版の詳細
+        </button>
+        <button onClick={() => setActiveTab('buy')} style={footerLinkStyle}>
+          <Printer size={16} /> ライセンス購入
+        </button>
+        <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
+          <Info size={16} /> 本サイトについて
+        </button>
+        <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
+          <ShieldCheck size={16} /> プライバシー
+        </button>
+        <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
+          <FileText size={16} /> 免責事項
+        </button>
+        <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
+          <ExternalLink size={16} /> お問い合わせ
+        </a>
+        <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '1rem' }}>
+          © 2026 Goya Code Lab
+        </div>
+      </footer>
     </>
   );
-}
+};
 
 const footerLinkStyle: React.CSSProperties = {
   background: 'none',

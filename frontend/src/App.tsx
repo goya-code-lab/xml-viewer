@@ -98,6 +98,13 @@ const App: React.FC = () => {
     }
   }, [activeTab]);
 
+  // Reset modal scroll to top when activeTab changes
+  useEffect(() => {
+    if (modalBodyRef.current) {
+      modalBodyRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
+
   // SEO: FAQ Schema (JSON-LD)
   useEffect(() => {
     const schema = {

@@ -648,7 +648,7 @@ const App: React.FC = () => {
                     <h4 style={{ marginTop: 0 }}>まずは無料でお試しください</h4>
                     <p style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>インストール不要。exeファイルをダウンロードして実行するだけです。</p>
                     <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                      <a href="/downloads/xml_viewer.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                      <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
                         Windows版をダウンロード
                       </a>
                       <button onClick={() => setActiveTab('buy')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>

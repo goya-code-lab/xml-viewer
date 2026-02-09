@@ -340,11 +340,11 @@ const App: React.FC = () => {
         <header className="header-section">
           <h1>電子公文書XMLビューア</h1>
           <p className="description pc-only">
-            e-Gov、e-Tax、法令標準XMLからXBRLまで、行政手続きのXMLファイルをこれ一つで。
-            <br />最適なスタイルシート（XSL）を自動適用し、読みやすくプレビューできます。
+            e-Gov、e-Tax、法令標準XML等の<strong>XMLファイルが開けない・中身が読めない</strong>悩みを即座に解消。
+            <br />公文書の「見方」を劇的に変える、ブラウザ完結のプレビューツールです。
           </p>
           <p className="description mobile-only">
-            e-Govや法令XML等の公文書ファイルを、ブラウザで即座に読みやすく表示します。
+            e-Govやe-TaxのXML公文書を、スマホやブラウザで即座に読みやすくプレビュー。
           </p>
         </header>
 
@@ -488,7 +488,7 @@ const App: React.FC = () => {
 
         {/* Usage Guide Section */}
         <section className="guide-section">
-          <h2 className="guide-title">はじめての方へ：かんたん3ステップ</h2>
+          <h2 className="guide-title">XMLファイルが開けない時の解決方法：かんたん3ステップ</h2>
           <div className="guide-steps">
             <div className="guide-step">
               <div className="guide-icon-wrapper">
@@ -525,7 +525,7 @@ const App: React.FC = () => {
 
         {/* FAQ Section */}
         <section className="faq-section">
-          <h2 className="faq-title">よくあるご質問</h2>
+          <h2 className="faq-title">e-Gov公文書XMLの見方・よくあるご質問</h2>
           <div className="faq-list">
             {faqs.map((faq, idx) => (
               <div key={idx} className={`faq-item ${openFaqIndex === idx ? 'open' : ''}`}>

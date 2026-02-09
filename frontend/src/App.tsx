@@ -337,14 +337,14 @@ const App: React.FC = () => {
       </div>
 
       <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
-        <header className="header-section">
+        <header className="header-section" id="what-is-xml-viewer">
           <h1>電子公文書XMLビューア</h1>
           <p className="description pc-only">
-            e-Gov、e-Tax、法令標準XML等の<strong>XMLファイルが開けない・中身が読めない</strong>悩みを即座に解消。
-            <br />公文書の「見方」を劇的に変える、ブラウザ完結のプレビューツールです。
+            <strong>電子公文書XMLビューア</strong>は、e-Govやe-Tax、法令標準XML等の「XMLファイルが開けない・中身が読めない」という課題を解決するための無料Webツールです。
+            <br />インストール不要で、行政手続き特有のXSLスタイルシートを自動適用し、公文書の内容をブラウザで即座に読みやすく表示（プレビュー）・印刷できます。
           </p>
           <p className="description mobile-only">
-            e-Govやe-TaxのXML公文書を、スマホやブラウザで即座に読みやすくプレビュー。
+            e-Govやe-TaxのXML公文書を、ブラウザで即座に読みやすく表示・印刷できる無料ツールです。
           </p>
         </header>
 
@@ -487,7 +487,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Usage Guide Section */}
-        <section className="guide-section">
+        <section className="guide-section" id="how-to-open-gov-xml">
           <h2 className="guide-title">XMLファイルが開けない時の解決方法：かんたん3ステップ</h2>
           <div className="guide-steps">
             <div className="guide-step">
@@ -524,7 +524,7 @@ const App: React.FC = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="faq-section">
+        <section className="faq-section" id="faq">
           <h2 className="faq-title">e-Gov公文書XMLの見方・よくあるご質問</h2>
           <div className="faq-list">
             {faqs.map((faq, idx) => (

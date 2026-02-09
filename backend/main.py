@@ -132,15 +132,15 @@ async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
         else:
             item.unlink()
             
+    valid_files_processed = 0
     for file in files:
         # ファイル拡張子のバリデーション
         ext = Path(file.filename).suffix.lower()
         if ext not in ALLOWED_EXTENSIONS:
-            raise HTTPException(
-                status_code=400, 
-                detail=f"Unsupported file type: {file.filename}. Only XML, XSL, and ZIP are allowed."
-            )
+            print(f"Skipping unsupported file: {file.filename}")
+            continue
 
+        valid_files_processed += 1
         file_path = session_dir / file.filename
         file_path.parent.mkdir(parents=True, exist_ok=True)
         
@@ -150,10 +150,18 @@ async def upload_files(session_id: str, files: List[UploadFile] = File(...)):
         if file.filename.lower().endswith(".zip"):
             try:
                 with zipfile.ZipFile(file_path, 'r') as zip_ref:
+                    # ZIP内のファイルも拡張子チェックしたいが、一旦展開してその後rglobで収集されるので
+                    # 展開自体は許可する（不要なファイルは後の処理で無視される）
                     zip_ref.extractall(session_dir)
                 file_path.unlink()
             except Exception as e:
                 raise HTTPException(status_code=400, detail=f"Failed to extract ZIP {file.filename}: {str(e)}")
+
+    if len(files) > 0 and valid_files_processed == 0:
+        raise HTTPException(
+            status_code=400, 
+            detail="読み込み可能なファイル（XML, XSL, ZIP）が含まれていません。"
+        )
             
     xml_files = []
     for p in session_dir.rglob("*.xml"):

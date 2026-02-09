@@ -208,9 +208,26 @@ const App: React.FC = () => {
     }
 
     setIsUploading(true);
+    // Filter allowed files (.xml, .xsl, .zip)
+    const allowedExtensions = ['.xml', '.xsl', '.zip'];
+    const filteredFiles = normalizedFiles.filter(item => {
+      const ext = item.file.name.substring(item.file.name.lastIndexOf('.')).toLowerCase();
+      return allowedExtensions.includes(ext);
+    });
+
+    if (filteredFiles.length === 0) {
+      alert('読み込み可能なファイル（XML, XSL, ZIP）が含まれていません。');
+      setIsDragging(false);
+      return;
+    }
+
     const formData = new FormData();
-    normalizedFiles.forEach(f => {
-      formData.append('files', f.file, f.path);
+    filteredFiles.forEach((item) => {
+      // Create a new File object to preserve the relative path in the name (used by backend)
+      const fileWithRelativePath = new File([item.file], item.path, {
+        type: item.file.type,
+      });
+      formData.append('files', fileWithRelativePath);
     });
 
     try {

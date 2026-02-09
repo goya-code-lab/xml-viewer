@@ -139,6 +139,14 @@ const App: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Prerender trigger
+  useEffect(() => {
+    // Short delay to ensure browser rendering is complete
+    setTimeout(() => {
+      document.dispatchEvent(new Event('render-event'));
+    }, 500);
+  }, []);
+
   // Body scroll lock for modal
   useEffect(() => {
     if (activeTab) {
@@ -525,210 +533,207 @@ const App: React.FC = () => {
       </div>
 
       {/* Modal Overlay */}
-      {activeTab && (
-        <div className="modal-overlay" onClick={() => setActiveTab(null)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setActiveTab(null)}>
-              <X size={24} />
-            </button>
-            <div className="modal-body" ref={modalBodyRef}>
-              {activeTab === 'privacy' && (
-                <div className="content-page">
-                  <h2>プライバシーポリシー</h2>
-                  <p><strong>Goya Code Lab</strong>（以下、「当方」といいます。）は、本ウェブサイト（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
-                  <h3>第1条（ファイルデータの取り扱い）</h3>
-                  <ol>
-                    <li>本サービスにおいてアップロードされたXMLファイルおよびXSLファイル（以下、「ユーザーデータ」といいます。）は、プレビュー表示の生成のみに使用されます。</li>
-                    <li>ユーザーデータは各ユーザーのセッションごとに隔離されたディレクトリで処理され、他のユーザーが閲覧することはできません。</li>
-                    <li>ユーザーデータは、アップロードから2時間経過後にサーバーより自動的に、かつ恒久的に削除されます。</li>
-                  </ol>
-                  <h3>第2条（広告の配信について）</h3>
-                  <p>本サービスでは、今後Google AdSense等の第三者配信の広告サービスを利用する可能性があります。これに伴い、Cookie等を使用してユーザーの閲覧履歴を取得する場合がありますが、個人を特定する情報は含まれません。</p>
+      <div
+        className={`modal-overlay ${activeTab ? 'active' : ''}`}
+        onClick={() => setActiveTab(null)}
+        style={{
+          display: activeTab ? 'flex' : 'none',
+          opacity: activeTab ? 1 : 0,
+          visibility: activeTab ? 'visible' : 'hidden',
+          pointerEvents: activeTab ? 'auto' : 'none'
+        }}
+      >
+        <div className="modal-content" onClick={e => e.stopPropagation()}>
+          <button className="modal-close" onClick={() => setActiveTab(null)}>
+            <X size={24} />
+          </button>
+          <div className="modal-body" ref={modalBodyRef}>
+            <div className="content-page" style={{ display: activeTab === 'privacy' ? 'block' : 'none' }}>
+              <h2>プライバシーポリシー</h2>
+              <p><strong>Goya Code Lab</strong>（以下、「当方」といいます。）は、本ウェブサイト（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
+              <h3>第1条（ファイルデータの取り扱い）</h3>
+              <ol>
+                <li>本サービスにおいてアップロードされたXMLファイルおよびXSLファイル（以下、「ユーザーデータ」といいます。）は、プレビュー表示の生成のみに使用されます。</li>
+                <li>ユーザーデータは各ユーザーのセッションごとに隔離されたディレクトリで処理され、他のユーザーが閲覧することはできません。</li>
+                <li>ユーザーデータは、アップロードから2時間経過後にサーバーより自動的に、かつ恒久的に削除されます。</li>
+              </ol>
+              <h3>第2条（広告の配信について）</h3>
+              <p>本サービスでは、今後Google AdSense等の第三者配信の広告サービスを利用する可能性があります。これに伴い、Cookie等を使用してユーザーの閲覧履歴を取得する場合がありますが、個人を特定する情報は含まれません。</p>
+            </div>
+            <div className="content-page" style={{ display: activeTab === 'terms' ? 'block' : 'none' }}>
+              <h2>免責事項</h2>
+              <h3>無保証について</h3>
+              <p>本サービスは、現状のままで提供されるものであり、提供される情報の正確性、完全性、妥当性、特定の目的への適合性、または本サービスの利用による結果について、<strong>Goya Code Lab</strong>はいかなる保証も行いません。</p>
+              <h3>責任の限定</h3>
+              <p>ユーザーが本サービスを利用したことにより生じた直接的、間接的、付随的、特別、または波及的な損害（データの損失、業務の中断、利益の損失等を含みますが、これらに限定されません）について、当方は一切の責任を負いません。</p>
+              <h3>サービスの変更・停止</h3>
+              <p>当方は、予告なく本サービスの内容を変更、中断、または終了することができるものとします。</p>
+            </div>
+            <div className="content-page" style={{ display: activeTab === 'about' ? 'block' : 'none' }}>
+              <h2>本サイトについて</h2>
+              <h3>開発の目的</h3>
+              <p>「公文書XMLブラウザ」は、e-Gov（電子政府の総合窓口）やe-Tax、自治体から発行される電子公文書XMLを、専用ソフトなしで美しく閲覧するために開発されました。</p>
+              <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、独自のプレビュー技術で解決します。</p>
+
+              <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(2, 132, 199, 0.1)', margin: '2rem 0' }}>
+                <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書のXMLプレビューに対応</h3>
+                <p>日本の電子公文書は通常、<strong>XMLデータとXSLスタイルシート</strong>の組み合わせで構成されています。</p>
+                <p>本ツールは、これらが同梱されたZIPファイルをドロップするだけで、内部の構造を解析し、最適なスタイルを自動適用してプレビューします。</p>
+              </div>
+
+              <h3>主な対象ドキュメント</h3>
+              <ul>
+                <li><strong>e-Gov 公文書</strong>: 社会保険料額通知書、決定通知書、加入者情報等</li>
+                <li><strong>e-Tax / eLTAX</strong>: 電子申告・申請データのXMLプレビュー</li>
+                <li><strong>法令標準XML / XBRL</strong>: 構造化された法令データや財務情報の簡易閲覧</li>
+              </ul>
+
+              <div style={{ background: 'rgba(15, 23, 42, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }}>
+                <h3 style={{ marginTop: 0 }}>Windows版（オフライン・機密業務対応）</h3>
+                <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版を提供しております。</p>
+                <button onClick={() => setActiveTab('windows')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '10px 20px', borderRadius: '10px', marginTop: '10px' }}>
+                  Windows版の詳細を見る
+                </button>
+              </div>
+              <h3>動作環境</h3>
+              <ul>
+                <li>推奨ブラウザ: Google Chrome, Microsoft Edge, Safari (最新版)</li>
+                <li>フォルダ・ZIPアップロード対応 (Chromium系ブラウザ推奨)</li>
+              </ul>
+            </div>
+            <div className="content-page" style={{ display: activeTab === 'windows' ? 'block' : 'none' }}>
+              <h2>電子公文書XMLビューア Windows版</h2>
+              <p>インターネット接続なしで動作する、高セキュリティなデスクトップアプリケーションです。プロフェッショナルな現場に最適な機能を提供します。</p>
+
+              <div style={{ margin: '2rem 0', textAlign: 'center' }}>
+                <img
+                  src="/windows_screenshot.png"
+                  alt="Windows版の画面イメージ"
+                  style={{
+                    maxWidth: '100%',
+                    borderRadius: '16px',
+                    boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+                    border: '1px solid rgba(0,0,0,0.05)'
+                  }}
+                />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', margin: '2rem 0' }}>
+                <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>100% オフライン</h4>
+                  <p style={{ margin: 0, fontSize: '0.85rem' }}>データがPCの外に出ることがないため、極めて高い機密性を保持できます。</p>
                 </div>
-              )}
-              {activeTab === 'terms' && (
-                <div className="content-page">
-                  <h2>免責事項</h2>
-                  <h3>無保証について</h3>
-                  <p>本サービスは、現状のままで提供されるものであり、提供される情報の正確性、完全性、妥当性、特定の目的への適合性、または本サービスの利用による結果について、<strong>Goya Code Lab</strong>はいかなる保証も行いません。</p>
-                  <h3>責任の限定</h3>
-                  <p>ユーザーが本サービスを利用したことにより生じた直接的、間接的、付随的、特別、または波及的な損害（データの損失、業務の中断、利益の損失等を含みますが、これらに限定されません）について、当方は一切の責任を負いません。</p>
-                  <h3>サービスの変更・停止</h3>
-                  <p>当方は、予告なく本サービスの内容を変更、中断、または終了することができるものとします。</p>
+                <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>ファイル数無制限</h4>
+                  <p style={{ margin: 0, fontSize: '0.85rem' }}>Web版のような同時表示制限がなく、大量の公文書もリストから選択してスムーズに表示可能です。</p>
                 </div>
-              )}
-              {activeTab === 'about' && (
-                <div className="content-page">
-                  <h2>本サイトについて</h2>
-                  <h3>開発の目的</h3>
-                  <p>「公文書XMLブラウザ」は、e-Gov（電子政府の総合窓口）やe-Tax、自治体から発行される電子公文書XMLを、専用ソフトなしで美しく閲覧するために開発されました。</p>
-                  <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、独自のプレビュー技術で解決します。</p>
-
-                  <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(2, 132, 199, 0.1)', margin: '2rem 0' }}>
-                    <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書のXMLプレビューに対応</h3>
-                    <p>日本の電子公文書は通常、<strong>XMLデータとXSLスタイルシート</strong>の組み合わせで構成されています。</p>
-                    <p>本ツールは、これらが同梱されたZIPファイルをドロップするだけで、内部の構造を解析し、最適なスタイルを自動適用してプレビューします。</p>
-                  </div>
-
-                  <h3>主な対象ドキュメント</h3>
-                  <ul>
-                    <li><strong>e-Gov 公文書</strong>: 社会保険料額通知書、決定通知書、加入者情報等</li>
-                    <li><strong>e-Tax / eLTAX</strong>: 電子申告・申請データのXMLプレビュー</li>
-                    <li><strong>法令標準XML / XBRL</strong>: 構造化された法令データや財務情報の簡易閲覧</li>
-                  </ul>
-
-                  <div style={{ background: 'rgba(15, 23, 42, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }}>
-                    <h3 style={{ marginTop: 0 }}>Windows版（オフライン・機密業務対応）</h3>
-                    <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版を提供しております。</p>
-                    <button onClick={() => setActiveTab('windows')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '10px 20px', borderRadius: '10px', marginTop: '10px' }}>
-                      Windows版の詳細を見る
-                    </button>
-                  </div>
-                  <h3>動作環境</h3>
-                  <ul>
-                    <li>推奨ブラウザ: Google Chrome, Microsoft Edge, Safari (最新版)</li>
-                    <li>フォルダ・ZIPアップロード対応 (Chromium系ブラウザ推奨)</li>
-                  </ul>
+                <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>高速ブラウジング</h4>
+                  <p style={{ margin: 0, fontSize: '0.85rem' }}>OSネイティブの動作により、大量のファイルもストレスなく切り替えられます。</p>
                 </div>
-              )}
-              {activeTab === 'windows' && (
-                <div className="content-page">
-                  <h2>電子公文書XMLビューア Windows版</h2>
-                  <p>インターネット接続なしで動作する、高セキュリティなデスクトップアプリケーションです。プロフェッショナルな現場に最適な機能を提供します。</p>
+              </div>
 
-                  <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-                    <img
-                      src="/windows_screenshot.png"
-                      alt="Windows版の画面イメージ"
-                      style={{
-                        maxWidth: '100%',
-                        borderRadius: '16px',
-                        boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
-                        border: '1px solid rgba(0,0,0,0.05)'
-                      }}
-                    />
-                  </div>
+              <h3>ご利用プラン</h3>
+              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
+                    <th style={{ padding: '12px' }}>機能</th>
+                    <th style={{ padding: '12px' }}>トライアル版</th>
+                    <th style={{ padding: '12px', color: '#0284c7' }}>Standard版</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px' }}>利用料金</td>
+                    <td style={{ padding: '12px' }}>無料</td>
+                    <td style={{ padding: '12px', fontWeight: 700 }}>1,980円 (税込)</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px' }}>利用期限</td>
+                    <td style={{ padding: '12px' }}>30日間</td>
+                    <td style={{ padding: '12px' }}>無制限</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '12px' }}>商用・業務利用</td>
+                    <td style={{ padding: '12px' }}>可</td>
+                    <td style={{ padding: '12px' }}>可</td>
+                  </tr>
+                </tbody>
+              </table>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', margin: '2rem 0' }}>
-                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>100% オフライン</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem' }}>データがPCの外に出ることがないため、極めて高い機密性を保持できます。</p>
-                    </div>
-                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>ファイル数無制限</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem' }}>Web版のような同時表示制限がなく、大量の公文書もリストから選択してスムーズに表示可能です。</p>
-                    </div>
-                    <div style={{ background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                      <h4 style={{ margin: '0 0 10px 0', color: '#0284c7' }}>高速ブラウジング</h4>
-                      <p style={{ margin: 0, fontSize: '0.85rem' }}>OSネイティブの動作により、大量のファイルもストレスなく切り替えられます。</p>
-                    </div>
-                  </div>
-
-                  <h3>ご利用プラン</h3>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
-                    <thead>
-                      <tr style={{ borderBottom: '2px solid #e2e8f0', textAlign: 'left' }}>
-                        <th style={{ padding: '12px' }}>機能</th>
-                        <th style={{ padding: '12px' }}>トライアル版</th>
-                        <th style={{ padding: '12px', color: '#0284c7' }}>Standard版</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                        <td style={{ padding: '12px' }}>利用料金</td>
-                        <td style={{ padding: '12px' }}>無料</td>
-                        <td style={{ padding: '12px', fontWeight: 700 }}>1,980円 (税込)</td>
-                      </tr>
-                      <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                        <td style={{ padding: '12px' }}>利用期限</td>
-                        <td style={{ padding: '12px' }}>30日間</td>
-                        <td style={{ padding: '12px' }}>無制限</td>
-                      </tr>
-                      <tr>
-                        <td style={{ padding: '12px' }}>商用・業務利用</td>
-                        <td style={{ padding: '12px' }}>可</td>
-                        <td style={{ padding: '12px' }}>可</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <div style={{ background: '#eff6ff', padding: '1.5rem', borderRadius: '20px', textAlign: 'center' }}>
-                    <h4 style={{ marginTop: 0 }}>まずは無料でお試しください</h4>
-                    <p style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>インストール不要。exeファイルをダウンロードして実行するだけです。</p>
-                    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                      <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
-                        Windows版をダウンロード
-                      </a>
-                      <button onClick={() => setActiveTab('buy')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
-                        ライセンスを購入する
-                      </button>
-                    </div>
-                  </div>
+              <div style={{ background: '#eff6ff', padding: '1.5rem', borderRadius: '20px', textAlign: 'center' }}>
+                <h4 style={{ marginTop: 0 }}>まずは無料でお試しください</h4>
+                <p style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>インストール不要。exeファイルをダウンロードして実行するだけです。</p>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                    Windows版をダウンロード
+                  </a>
+                  <button onClick={() => setActiveTab('buy')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                    ライセンスを購入する
+                  </button>
                 </div>
-              )}
-              {activeTab === 'buy' && (
-                <div className="content-page">
-                  <h2>Standard版ライセンスの購入</h2>
-                  <p>電子公文書XMLビューア Standard版をご検討いただきありがとうございます。</p>
+              </div>
+            </div>
+            <div className="content-page" style={{ display: activeTab === 'buy' ? 'block' : 'none' }}>
+              <h2>Standard版ライセンスの購入</h2>
+              <p>電子公文書XMLビューア Standard版をご検討いただきありがとうございます。</p>
 
-                  <div style={{ border: '1px solid #e2e8f0', borderRadius: '24px', padding: '2rem', margin: '2rem 0', textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.5rem' }}>買い切りライセンス</div>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem' }}>¥1,980 <span style={{ fontSize: '1rem', fontWeight: 400 }}> (税込)</span></div>
+              <div style={{ border: '1px solid #e2e8f0', borderRadius: '24px', padding: '2rem', margin: '2rem 0', textAlign: 'center' }}>
+                <div style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '0.5rem' }}>買い切りライセンス</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem' }}>¥1,980 <span style={{ fontSize: '1rem', fontWeight: 400 }}> (税込)</span></div>
 
-                    <ul style={{ textAlign: 'left', display: 'inline-block', marginBottom: '2rem' }}>
-                      <li>✓ 試用期間（30日）の解除</li>
-                      <li>✓ 永続的な利用が可能</li>
-                      <li>✓ 同一ユーザーなら複数台PCでも利用可能</li>
-                      <li>✓ 今後のアップデートに対応</li>
-                    </ul>
+                <ul style={{ textAlign: 'left', display: 'inline-block', marginBottom: '2rem' }}>
+                  <li>✓ 試用期間（30日）の解除</li>
+                  <li>✓ 永続的な利用が可能</li>
+                  <li>✓ 同一ユーザーなら複数台PCでも利用可能</li>
+                  <li>✓ 今後のアップデートに対応</li>
+                </ul>
 
-                    <div style={{ marginBottom: '1.5rem' }}>
-                      <a href="https://buy.stripe.com/fZu4gy3ZLc6D9GF763gjC00" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
-                        カード決済で進む (Stripe)
-                      </a>
-                    </div>
-
-                    <div style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'left', background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0', marginTop: '1rem' }}>
-                      <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600 }}>領収書について</p>
-                      <p style={{ margin: '0 0 0.5rem 0' }}>・決済完了後、Stripeより領収書メールが自動送信されます。</p>
-                      <p style={{ margin: '0 0 1rem 0' }}>・宛名（会社名等）入りの領収書が必要な方は、決済後に「お問合せフォーム」より決済日と購入メールアドレスを添えてご連絡ください。PDF形式にて発行いたします。</p>
-
-                      <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.8rem', color: '#94a3b8' }}>
-                        ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
-                        ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
-                      </p>
-                    </div>
-                  </div>
-
-                  <h3>決済の流れ</h3>
-                  <ol style={{ fontSize: '0.9rem', color: '#475569' }}>
-                    <li>上のボタンからStripe（外部決済サイト）へ進みます。</li>
-                    <li>メールアドレスとクレジットカード情報を入力して決済を完了させます。</li>
-                    <li>決済完了後、数分以内にライセンスキーが記載された自動メールが届きます。</li>
-                    <li>アプリ起動時にキーを入力すると、Standard版が有効化されます。</li>
-                  </ol>
-
-                  <div style={{ marginTop: '2rem', padding: '1.25rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                    <h4 style={{ margin: '0 0 10px 0', fontSize: '0.95rem', color: '#475569' }}>メールが届かない場合</h4>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
-                      決済完了から10分以上経過してもメールが届かない場合は、まず以下の点をご確認ください：
-                    </p>
-                    <ul style={{ margin: '10px 0', fontSize: '0.85rem', color: '#64748b', paddingLeft: '20px' }}>
-                      <li>迷惑メールフォルダや「プロモーション」タブに入っていないか</li>
-                      <li>ご入力いただいたメールアドレスに誤りがなかったか</li>
-                      <li>ドメイン指定受信設定（@goya-code-lab.jp からのメールを許可）</li>
-                    </ul>
-                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
-                      解決しない場合は、こちらの<a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。<br />
-                      決済状況を確認の上、対応させていただきます。
-                    </p>
-                  </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <a href="https://buy.stripe.com/fZu4gy3ZLc6D9GF763gjC00" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
+                    カード決済で進む (Stripe)
+                  </a>
                 </div>
-              )}
+
+                <div style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'left', background: '#f8fafc', padding: '1.25rem', borderRadius: '16px', border: '1px solid #e2e8f0', marginTop: '1rem' }}>
+                  <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600 }}>領収書について</p>
+                  <p style={{ margin: '0 0 0.5rem 0' }}>・決済完了後、Stripeより領収書メールが自動送信されます。</p>
+                  <p style={{ margin: '0 0 1rem 0' }}>・宛名（会社名等）入りの領収書が必要な方は、決済後に「お問合せフォーム」より決済日と購入メールアドレスを添えてご連絡ください。PDF形式にて発行いたします。</p>
+
+                  <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.8rem', color: '#94a3b8' }}>
+                    ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
+                    ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
+                  </p>
+                </div>
+              </div>
+
+              <h3>決済の流れ</h3>
+              <ol style={{ fontSize: '0.9rem', color: '#475569' }}>
+                <li>上のボタンからStripe（外部決済サイト）へ進みます。</li>
+                <li>メールアドレスとクレジットカード情報を入力して決済を完了させます。</li>
+                <li>決済完了後、数分以内にライセンスキーが記載された自動メールが届きます。</li>
+                <li>アプリ起動時にキーを入力すると、Standard版が有効化されます。</li>
+              </ol>
+
+              <div style={{ marginTop: '2rem', padding: '1.25rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                <h4 style={{ margin: '0 0 10px 0', fontSize: '0.95rem', color: '#475569' }}>メールが届かない場合</h4>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
+                  決済完了から10分以上経過してもメールが届かない場合は、まず以下の点をご確認ください：
+                </p>
+                <ul style={{ margin: '10px 0', fontSize: '0.85rem', color: '#64748b', paddingLeft: '20px' }}>
+                  <li>迷惑メールフォルダや「プロモーション」タブに入っていないか</li>
+                  <li>ご入力いただいたメールアドレスに誤りがなかったか</li>
+                  <li>ドメイン指定受信設定（@goya-code-lab.jp からのメールを許可）</li>
+                </ul>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
+                  解決しない場合は、こちらの<a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。<br />
+                  決済状況を確認の上、対応させていただきます。
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Footer Navigation Updates */}
       <footer style={{

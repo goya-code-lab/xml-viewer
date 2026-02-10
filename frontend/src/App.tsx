@@ -758,15 +758,13 @@ const App: React.FC = () => {
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
-                    <td style={{ padding: '12px' }}>
-                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
-                      <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
-                    </td>
+                    <td style={{ padding: '12px' }}>田中 聡</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
                     <td style={{ padding: '12px' }}>
-                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
+                      <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
                     </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
@@ -782,18 +780,18 @@ const App: React.FC = () => {
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
                     <td style={{ padding: '12px' }}>
-                      各商品の購入ページに表示されている価格（消費税込み）
+                      1,980円（税込）
                     </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
                     <td style={{ padding: '12px' }}>
-                      なし（ダウンロード販売、またはWebサービス利用のため）
+                      なし（ダウンロード販売のため）
                     </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
-                    <td style={{ padding: '12px' }}>クレジットカード決済（Stripe）</td>
+                    <td style={{ padding: '12px' }}>クレジットカード決済</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
@@ -801,13 +799,13 @@ const App: React.FC = () => {
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
-                    <td style={{ padding: '12px' }}>決済完了後、即座にライセンスキーをメールにて送付します。</td>
+                    <td style={{ padding: '12px' }}>代金決済完了後、即座にライセンスキーをメールにて送付します。</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                     <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
                     <td style={{ padding: '12px' }}>
-                      デジタルコンテンツの性質上、購入確定後の返品・キャンセルはお受けできません。<br />
-                      試用版にて動作が正常であることを事前にご確認の上、ご購入ください。
+                      商品（ライセンスキー）の性質上、決済完了後の返品・キャンセルはお受けできません。<br />
+                      購入前に試用版にて動作を確認の上、お申し込みください。
                     </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #f1f5f9' }}>

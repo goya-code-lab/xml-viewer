@@ -825,7 +825,10 @@ const App: React.FC = () => {
       <footer className="footer-section">
         <div className="footer-content">
           <div className="footer-column">
-            <div className="footer-group-title">Service & Product</div>
+            <div className="footer-group-title">
+              <Archive size={18} />
+              製品・サービス (Service)
+            </div>
             <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
               <Info size={16} /> 本サイトについて
             </button>
@@ -838,7 +841,10 @@ const App: React.FC = () => {
           </div>
 
           <div className="footer-column">
-            <div className="footer-group-title">Legal Information</div>
+            <div className="footer-group-title">
+              <ShieldCheck size={18} />
+              法的情報 (Legal)
+            </div>
             <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
               <ShieldCheck size={16} /> プライバシーポリシー
             </button>
@@ -851,14 +857,17 @@ const App: React.FC = () => {
           </div>
 
           <div className="footer-column">
-            <div className="footer-group-title">Support</div>
+            <div className="footer-group-title">
+              <ExternalLink size={18} />
+              サポート (Support)
+            </div>
             <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
               <ExternalLink size={16} /> お問い合わせフォーム
             </a>
           </div>
         </div>
 
-        <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
+        <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
           © 2026 Goya Code Lab
         </div>
       </footer>

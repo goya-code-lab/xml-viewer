@@ -608,7 +608,7 @@ const App: React.FC = () => {
               <div style={{ background: 'rgba(15, 23, 42, 0.03)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.05)', margin: '2rem 0' }}>
                 <h3 style={{ marginTop: 0 }}>Windows版（オフライン・機密業務対応）</h3>
                 <p>より高い機密性や大量の処理が求められる士業・法人様向けに、オフライン環境で動作するWindowsデスクトップ版を提供しております。</p>
-                <button onClick={() => setActiveTab('windows')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '10px 20px', borderRadius: '10px', marginTop: '10px' }}>
+                <button onClick={() => setActiveTab('windows')} className="btn-cta-link" style={{ background: '#0284c7', color: 'white', marginTop: '10px' }}>
                   Windows版の詳細を見る
                 </button>
               </div>
@@ -682,10 +682,10 @@ const App: React.FC = () => {
                 <h4 style={{ marginTop: 0 }}>まずは無料でお試しください</h4>
                 <p style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>インストール不要。exeファイルをダウンロードして実行するだけです。</p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" style={{ ...footerLinkStyle, background: '#1e293b', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                  <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" className="btn-cta-link" style={{ background: '#1e293b', color: 'white' }}>
                     Windows版をダウンロード
                   </a>
-                  <button onClick={() => setActiveTab('buy')} style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '12px' }}>
+                  <button onClick={() => setActiveTab('buy')} className="btn-cta-link" style={{ background: '#0284c7', color: 'white' }}>
                     ライセンスを購入する
                   </button>
                 </div>
@@ -707,7 +707,7 @@ const App: React.FC = () => {
                 </ul>
 
                 <div style={{ marginBottom: '1.5rem' }}>
-                  <a href="https://buy.stripe.com/fZu4gy3ZLc6D9GF763gjC00" style={{ ...footerLinkStyle, background: '#0284c7', color: 'white', padding: '16px 32px', borderRadius: '16px', fontSize: '1.1rem', justifyContent: 'center' }}>
+                  <a href="https://buy.stripe.com/fZu4gy3ZLc6D9GF763gjC00" className="btn-cta-link" style={{ background: '#0284c7', color: 'white', fontSize: '1.1rem', padding: '16px 32px', borderRadius: '16px' }}>
                     カード決済で進む (Stripe)
                   </a>
                 </div>
@@ -829,13 +829,13 @@ const App: React.FC = () => {
               <span className="footer-icon-wrapper"><Archive size={18} /></span>
               製品・サービス (Service)
             </div>
-            <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('about')}>
               <span className="footer-icon-wrapper"><Info size={16} /></span> 本サイトについて
             </button>
-            <button onClick={() => setActiveTab('windows')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('windows')}>
               <span className="footer-icon-wrapper"><Layout size={16} /></span> Windows版の詳細
             </button>
-            <button onClick={() => setActiveTab('buy')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('buy')}>
               <span className="footer-icon-wrapper"><Printer size={16} /></span> ライセンス購入
             </button>
           </div>
@@ -845,13 +845,13 @@ const App: React.FC = () => {
               <span className="footer-icon-wrapper"><ShieldCheck size={18} /></span>
               法的情報 (Legal)
             </div>
-            <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('privacy')}>
               <span className="footer-icon-wrapper"><ShieldCheck size={16} /></span> プライバシーポリシー
             </button>
-            <button onClick={() => setActiveTab('scta')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('scta')}>
               <span className="footer-icon-wrapper"><FileText size={16} /></span> 特定商取引法に基づく表記
             </button>
-            <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
+            <button onClick={() => setActiveTab('terms')}>
               <span className="footer-icon-wrapper"><ShieldCheck size={16} /></span> 免責事項・利用規約
             </button>
           </div>
@@ -861,7 +861,7 @@ const App: React.FC = () => {
               <span className="footer-icon-wrapper"><ExternalLink size={18} /></span>
               サポート (Support)
             </div>
-            <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
+            <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">
               <span className="footer-icon-wrapper"><ExternalLink size={16} /></span> お問い合わせフォーム
             </a>
           </div>
@@ -873,22 +873,6 @@ const App: React.FC = () => {
       </footer>
     </>
   );
-};
-
-const footerLinkStyle: React.CSSProperties = {
-  background: 'none',
-  padding: '8px 12px',
-  color: '#64748b',
-  fontSize: '0.9rem',
-  fontWeight: 500,
-  width: 'auto',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '6px',
-  cursor: 'pointer',
-  transition: 'color 0.2s',
-  border: 'none',
-  textDecoration: 'none'
 };
 
 export default App;

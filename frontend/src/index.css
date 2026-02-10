@@ -299,6 +299,20 @@ button {
   box-shadow: none;
 }
 
+.btn-cta-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  gap: 8px;
+}
+
 /* Footer Section */
 footer {
   width: 100%;
@@ -367,7 +381,7 @@ footer {
 .footer-icon-wrapper {
   width: 24px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
 }

@@ -63,7 +63,7 @@ const App: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [step, setStep] = useState(1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | null>(null);
+  const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | 'scta' | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const modalBodyRef = React.useRef<HTMLDivElement>(null);
@@ -72,7 +72,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['privacy', 'terms', 'about', 'windows', 'buy'].includes(hash)) {
+      if (['privacy', 'terms', 'about', 'windows', 'buy', 'scta'].includes(hash)) {
         setActiveTab(hash as any);
       } else if (!hash) {
         setActiveTab(null);
@@ -719,7 +719,7 @@ const App: React.FC = () => {
 
                   <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.8rem', color: '#94a3b8' }}>
                     ※ 決済完了後、ご入力いただいたメールアドレス宛に即座にライセンスキーが送信されます。<br />
-                    ※ 特定商取引法に基づく表記は<a href="#terms" onClick={() => setActiveTab('terms')}>こちら</a>をご確認ください。
+                    ※ 特定商取引法に基づく表記は<a href="#scta" onClick={() => setActiveTab('scta')}>こちら</a>をご確認ください。
                   </p>
                 </div>
               </div>
@@ -748,6 +748,75 @@ const App: React.FC = () => {
                 </p>
               </div>
             </div>
+            <div className="content-page" style={{ display: activeTab === 'scta' ? 'block' : 'none' }}>
+              <h2>特定商取引法に基づく表記</h2>
+              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', width: '30%', color: '#64748b' }}>販売業者</th>
+                    <td style={{ padding: '12px' }}>Goya Code Lab</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
+                    <td style={{ padding: '12px' }}>
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
+                      <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
+                    <td style={{ padding: '12px' }}>
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>電話番号</th>
+                    <td style={{ padding: '12px' }}>
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>メールアドレス</th>
+                    <td style={{ padding: '12px' }}>support@goya-code-lab.jp</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
+                    <td style={{ padding: '12px' }}>
+                      各商品の購入ページに表示されている価格（消費税込み）
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
+                    <td style={{ padding: '12px' }}>
+                      なし（ダウンロード販売、またはWebサービス利用のため）
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
+                    <td style={{ padding: '12px' }}>クレジットカード決済（Stripe）</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
+                    <td style={{ padding: '12px' }}>商品注文確定時にお支払いが確定します。</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
+                    <td style={{ padding: '12px' }}>決済完了後、即座にライセンスキーをメールにて送付します。</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
+                    <td style={{ padding: '12px' }}>
+                      デジタルコンテンツの性質上、購入確定後の返品・キャンセルはお受けできません。<br />
+                      試用版にて動作が正常であることを事前にご確認の上、ご購入ください。
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>動作環境</th>
+                    <td style={{ padding: '12px' }}>商品ページ、または配布ソフトウェアの説明書に記載。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -774,8 +843,11 @@ const App: React.FC = () => {
         <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
           <ShieldCheck size={16} /> プライバシー
         </button>
+        <button onClick={() => setActiveTab('scta')} style={footerLinkStyle}>
+          <FileText size={16} /> 特定商取引法に基づく表記
+        </button>
         <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
-          <FileText size={16} /> 免責事項
+          <ShieldCheck size={16} /> 免責事項
         </button>
         <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
           <ExternalLink size={16} /> お問い合わせ

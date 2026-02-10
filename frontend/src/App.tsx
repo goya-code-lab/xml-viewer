@@ -826,43 +826,43 @@ const App: React.FC = () => {
         <div className="footer-content">
           <div className="footer-column">
             <div className="footer-group-title">
-              <Archive size={18} />
+              <span className="footer-icon-wrapper"><Archive size={18} /></span>
               製品・サービス (Service)
             </div>
             <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
-              <Info size={16} /> 本サイトについて
+              <span className="footer-icon-wrapper"><Info size={16} /></span> 本サイトについて
             </button>
             <button onClick={() => setActiveTab('windows')} style={footerLinkStyle}>
-              <Layout size={16} /> Windows版の詳細
+              <span className="footer-icon-wrapper"><Layout size={16} /></span> Windows版の詳細
             </button>
             <button onClick={() => setActiveTab('buy')} style={footerLinkStyle}>
-              <Printer size={16} /> ライセンス購入
+              <span className="footer-icon-wrapper"><Printer size={16} /></span> ライセンス購入
             </button>
           </div>
 
           <div className="footer-column">
             <div className="footer-group-title">
-              <ShieldCheck size={18} />
+              <span className="footer-icon-wrapper"><ShieldCheck size={18} /></span>
               法的情報 (Legal)
             </div>
             <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
-              <ShieldCheck size={16} /> プライバシーポリシー
+              <span className="footer-icon-wrapper"><ShieldCheck size={16} /></span> プライバシーポリシー
             </button>
             <button onClick={() => setActiveTab('scta')} style={footerLinkStyle}>
-              <FileText size={16} /> 特定商取引法に基づく表記
+              <span className="footer-icon-wrapper"><FileText size={16} /></span> 特定商取引法に基づく表記
             </button>
             <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
-              <ShieldCheck size={16} /> 免責事項・利用規約
+              <span className="footer-icon-wrapper"><ShieldCheck size={16} /></span> 免責事項・利用規約
             </button>
           </div>
 
           <div className="footer-column">
             <div className="footer-group-title">
-              <ExternalLink size={18} />
+              <span className="footer-icon-wrapper"><ExternalLink size={18} /></span>
               サポート (Support)
             </div>
             <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
-              <ExternalLink size={16} /> お問い合わせフォーム
+              <span className="footer-icon-wrapper"><ExternalLink size={16} /></span> お問い合わせフォーム
             </a>
           </div>
         </div>

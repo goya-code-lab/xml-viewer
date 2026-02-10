@@ -822,37 +822,43 @@ const App: React.FC = () => {
       </div>
 
       {/* Footer Navigation Updates */}
-      <footer style={{
-        marginTop: '4rem',
-        padding: '2rem 0',
-        borderTop: '1px solid rgba(0,0,0,0.05)',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '24px',
-        flexWrap: 'wrap'
-      }}>
-        <button onClick={() => setActiveTab('windows')} style={footerLinkStyle}>
-          <Layout size={16} /> Windows版の詳細
-        </button>
-        <button onClick={() => setActiveTab('buy')} style={footerLinkStyle}>
-          <Printer size={16} /> ライセンス購入
-        </button>
-        <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
-          <Info size={16} /> 本サイトについて
-        </button>
-        <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
-          <ShieldCheck size={16} /> プライバシー
-        </button>
-        <button onClick={() => setActiveTab('scta')} style={footerLinkStyle}>
-          <FileText size={16} /> 特定商取引法に基づく表記
-        </button>
-        <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
-          <ShieldCheck size={16} /> 免責事項
-        </button>
-        <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
-          <ExternalLink size={16} /> お問い合わせ
-        </a>
-        <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '1rem' }}>
+      <footer className="footer-section">
+        <div className="footer-content">
+          <div className="footer-column">
+            <div className="footer-group-title">Service & Product</div>
+            <button onClick={() => setActiveTab('about')} style={footerLinkStyle}>
+              <Info size={16} /> 本サイトについて
+            </button>
+            <button onClick={() => setActiveTab('windows')} style={footerLinkStyle}>
+              <Layout size={16} /> Windows版の詳細
+            </button>
+            <button onClick={() => setActiveTab('buy')} style={footerLinkStyle}>
+              <Printer size={16} /> ライセンス購入
+            </button>
+          </div>
+
+          <div className="footer-column">
+            <div className="footer-group-title">Legal Information</div>
+            <button onClick={() => setActiveTab('privacy')} style={footerLinkStyle}>
+              <ShieldCheck size={16} /> プライバシーポリシー
+            </button>
+            <button onClick={() => setActiveTab('scta')} style={footerLinkStyle}>
+              <FileText size={16} /> 特定商取引法に基づく表記
+            </button>
+            <button onClick={() => setActiveTab('terms')} style={footerLinkStyle}>
+              <ShieldCheck size={16} /> 免責事項・利用規約
+            </button>
+          </div>
+
+          <div className="footer-column">
+            <div className="footer-group-title">Support</div>
+            <a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer" style={footerLinkStyle}>
+              <ExternalLink size={16} /> お問い合わせフォーム
+            </a>
+          </div>
+        </div>
+
+        <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
           © 2026 Goya Code Lab
         </div>
       </footer>

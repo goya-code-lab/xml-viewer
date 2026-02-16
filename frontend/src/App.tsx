@@ -471,7 +471,7 @@ const App: React.FC = () => {
         {/* Section 4: Windows Version Section */}
         <section className="windows-version-section" id="windows-version">
           <div className="section-header">
-            <h2 className="section-title">Windowsデベロッパー版</h2>
+            <h2 className="section-title">Windowsデスクトップ版</h2>
             <p className="section-tagline">100%オフライン動作。プロのための信頼仕様。</p>
           </div>
 
@@ -484,7 +484,7 @@ const App: React.FC = () => {
             <div className="feature-item">
               <Archive size={32} />
               <h4>ファイル数無制限</h4>
-              <p>大量の通知書も一括読み込み。リストから瞬時に切り替え可能。</p>
+              <p>制限なく複数のファイルをまとめて表示。リストから瞬時に切り替え可能。</p>
             </div>
             <div className="feature-item">
               <Plus size={32} />
@@ -533,7 +533,7 @@ const App: React.FC = () => {
                 <tr>
                   <td>処理制限</td>
                   <td>1回10件まで</td>
-                  <td>無制限・一括処理</td>
+                  <td>無制限・複数ファイル対応</td>
                 </tr>
                 <tr>
                   <td>価格</td>

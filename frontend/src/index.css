@@ -717,17 +717,14 @@ thead th:nth-child(3) {
 .badge-rank {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   background: #fdf2f8;
   color: #db2777;
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 0.25rem 0.6rem;
-  border-radius: 99px;
+  border-radius: 50%;
   margin-bottom: 0.5rem;
   border: 1px solid rgba(219, 39, 119, 0.2);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15);
 }
 

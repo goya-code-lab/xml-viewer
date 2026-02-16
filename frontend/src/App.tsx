@@ -530,7 +530,7 @@ const App: React.FC = () => {
                   <td>サーバー処理（SSL）</td>
                   <td className="highlight-cell">
                     <div className="badge-rank">
-                      <ThumbsUp size={14} fill="currentColor" /> RECOMMENDED
+                      <ThumbsUp size={16} fill="currentColor" />
                     </div>
                     <br />
                     <strong>100%オフライン</strong>

@@ -351,7 +351,7 @@ const App: React.FC = () => {
             <div className="visual-card">
               <Archive size={48} className="visual-icon" />
               <div className="visual-arrow">→</div>
-              <FileText size={48} className="visual-icon primary" />
+              <FileText size={48} className="visual-icon" />
             </div>
           </div>
         </section>

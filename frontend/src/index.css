@@ -133,19 +133,43 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
-.visual-icon {
-  color: #cbd5e1;
+.visual-card .visual-icon:nth-child(1) {
+  animation: iconSequence 3s infinite;
+  animation-delay: 0s;
 }
 
-.visual-icon.primary {
-  color: var(--primary);
-  filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.3));
+.visual-card .visual-arrow {
+  animation: iconSequence 3s infinite;
+  animation-delay: 1s;
+}
+
+.visual-card .visual-icon:nth-child(3) {
+  animation: iconSequence 3s infinite;
+  animation-delay: 2s;
+}
+
+@keyframes iconSequence {
+
+  0%,
+  100%,
+  66% {
+    color: #cbd5e1;
+    filter: none;
+    transform: scale(1);
+  }
+
+  33% {
+    color: var(--primary);
+    filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.4));
+    transform: scale(1.15);
+  }
 }
 
 .visual-arrow {
   font-size: 2rem;
   color: #e2e8f0;
   font-weight: 300;
+  transition: all 0.3s;
 }
 
 /* Card & App Interface (Crystal Clean) */

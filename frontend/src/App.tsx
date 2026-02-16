@@ -442,7 +442,7 @@ const App: React.FC = () => {
                   onClick={() => openPreview('window')}
                   className={activeFile ? 'btn-primary-cta' : ''}
                 >
-                  <Printer size={20} /> 新しい窓で表示
+                  <Printer size={20} /> 新しいウインドウで表示
                 </button>
               </div>
             </div>

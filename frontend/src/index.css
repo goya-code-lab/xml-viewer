@@ -56,7 +56,8 @@ body {
 /* Main Container */
 .main-container {
   width: 100%;
-  max-width: 1000px; /* Widened for LP structure */
+  max-width: 1000px;
+  /* Widened for LP structure */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -123,7 +124,7 @@ body {
   background: white;
   padding: 2rem 3rem;
   border-radius: 32px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(226, 232, 240, 0.8);
   transform: rotateX(10deg);
   animation: float 6s ease-in-out infinite;
@@ -145,8 +146,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: rotateX(10deg) translateY(0); }
-  50% { transform: rotateX(12deg) translateY(-15px); }
+
+  0%,
+  100% {
+    transform: rotateX(10deg) translateY(0);
+  }
+
+  50% {
+    transform: rotateX(12deg) translateY(-15px);
+  }
 }
 
 /* Section Common */
@@ -290,7 +298,7 @@ body {
   right: -50px;
   width: 200px;
   height: 200px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
 }
 
@@ -345,7 +353,7 @@ body {
 
 .feature-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
   border-color: var(--primary);
 }
 
@@ -404,7 +412,7 @@ body {
   background: white;
   border-radius: 24px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 .comparison-table {
@@ -429,8 +437,14 @@ body {
   border-bottom: none;
 }
 
-.comparison-table td:nth-child(2) { color: var(--text-muted); }
-.comparison-table td:nth-child(3) { color: var(--secondary); font-weight: 700; }
+.comparison-table td:nth-child(2) {
+  color: var(--text-muted);
+}
+
+.comparison-table td:nth-child(3) {
+  color: var(--secondary);
+  font-weight: 700;
+}
 
 /* Buttons */
 .button-group {
@@ -462,12 +476,12 @@ button {
 
 .btn-outline-white {
   background: transparent;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
 }
 
 .btn-outline-white:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-color: white;
 }
 
@@ -529,18 +543,118 @@ button {
   line-height: 1.7;
 }
 
+/* Footer Section */
+.footer-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 4rem auto 0 auto;
+  padding: 4rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  width: 100%;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-group-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+.footer-column button,
+.footer-column a {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-weight: 500;
+}
+
+.footer-column button:hover,
+.footer-column a:hover {
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
 @keyframes slideUpFade {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .hero-title { font-size: 1.9rem; }
-  .hero-subtitle { font-size: 1rem; }
-  .visual-card { padding: 1.5rem; gap: 1rem; }
-  .warning-card { padding: 2rem; }
-  .warning-header h3 { font-size: 1.3rem; }
-  .price-amount { font-size: 3rem; }
-  .button-group { flex-direction: column; }
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .visual-card {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .warning-card {
+    padding: 2rem;
+  }
+
+  .warning-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .price-amount {
+    font-size: 3rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }

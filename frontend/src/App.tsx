@@ -551,7 +551,7 @@ const App: React.FC = () => {
           <div className="faq-list">
             <div className="faq-item">
               <div className="faq-question">IEモードが使えない環境でも表示できますか？</div>
-              <div className="faq-answer">はい。本ツールは独自の解析エンジンを使用しているため、EdgeのIEモード設定やInternet Explorerの有無に関わらず、最新のブラウザで閲覧可能です。</div>
+              <div className="faq-answer">はい。本ツールはe-Govの仕様に最適化された変換ロジックを使用しているため、EdgeのIEモード設定やInternet Explorerの有無に関わらず、最新のブラウザで閲覧可能です。</div>
             </div>
             <div className="faq-item">
               <div className="faq-question">「社会保険料額通知書」などの特殊なXMLに対応していますか？</div>
@@ -623,7 +623,7 @@ const App: React.FC = () => {
               <h2>本サイトについて</h2>
               <h3>開発の目的</h3>
               <p>「公文書XMLブラウザ」は、e-Gov（電子政府の総合窓口）やe-Tax、自治体から発行される電子公文書XMLを、専用ソフトなしで美しく閲覧するために開発されました。</p>
-              <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、独自のプレビュー技術で解決します。</p>
+              <p>社労士・税理士・事務スタッフの皆様が直面する「XMLファイルの中身がタグだらけで読めない」という課題を、最適化されたプレビュー技術で解決します。</p>
 
               <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(2, 132, 199, 0.1)', margin: '2rem 0' }}>
                 <h3 style={{ marginTop: 0, color: '#0284c7' }}>電子公文書のXMLプレビューに対応</h3>

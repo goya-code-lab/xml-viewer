@@ -465,6 +465,8 @@ body {
   padding: 4rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 2rem;
   box-shadow: 0 40px 80px -20px rgba(12, 74, 110, 0.25);
   position: relative;

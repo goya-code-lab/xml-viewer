@@ -613,6 +613,43 @@ body {
   font-weight: 600;
 }
 
+.cta-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 1.25rem 2rem;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.btn-text-link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.8;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-text-link:hover {
+  opacity: 1;
+  color: var(--secondary);
+}
+
 /* Comparison Table */
 .comparison-section {
   padding: 4rem 0;

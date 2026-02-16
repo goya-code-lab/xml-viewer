@@ -337,200 +337,234 @@ const App: React.FC = () => {
       </div>
 
       <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
-        <header className="header-section" id="what-is-xml-viewer">
-          <h1>電子公文書XMLビューア</h1>
-          <p className="description pc-only">
-            <strong>電子公文書XMLビューア</strong>は、e-Govやe-Tax、法令標準XML等の「XMLファイルが開けない・中身が読めない」という課題を解決するための無料Webツールです。
-            <br />インストール不要で、行政手続き特有のXSLスタイルシートを自動適用し、公文書の内容をブラウザで即座に読みやすく表示（プレビュー）・印刷できます。
+        {/* Section 1: Hero Section */}
+        <section className="hero-section">
+          <div className="hero-badge">設定不要・1秒プレビュー</div>
+          <h1 className="hero-title">
+            もう、EdgeのIEモード設定で<br />消耗するのはやめませんか？
+          </h1>
+          <p className="hero-subtitle">
+            e-Govから届く「通知文書送達のお知らせ」XMLを、<br className="pc-only" />
+            解凍不要・ドロップだけで今すぐ確認。
           </p>
-          <p className="description mobile-only">
-            e-Govやe-TaxのXML公文書を、ブラウザで即座に読みやすく表示・印刷できる無料ツールです。
-          </p>
-        </header>
-
-        <div className="card">
-          {/* Step 1: XMLを選択（兼ドロップゾーン） */}
-          <div className={`step ${step === 1 || fileList.length > 0 ? 'step-active' : ''}`} style={{ display: 'flex', flexDirection: 'column', margin: 0 }}>
-            <div className="step-header">
-              <span className="step-number">1</span>
-              <span className="step-title">アップロード</span>
-            </div>
-
-            <div
-              className={`smart-list-container ${isDragging ? 'dragging' : ''} ${isUploading ? 'uploading' : ''}`}
-              onDragOver={onDragOver}
-              onDragLeave={onDragLeave}
-              onDrop={onDrop}
-              onClick={onAreaClick}
-              style={{ cursor: 'pointer' }}
-            >
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={onFileChange}
-                style={{ display: 'none' }}
-                multiple
-                accept=".xml,.xsl,.zip"
-              />
-              {isUploading ? (
-                <div className="upload-loader">読み込み中...</div>
-              ) : fileList.length === 0 ? (
-                <div className="empty-drop-area">
-                  <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
-                    <Archive size={40} className="drop-icon" />
-                    <Folder size={40} className="drop-icon" />
-                  </div>
-                  <p className="pc-only" style={{ fontWeight: 600, fontSize: '1rem', margin: 0, lineHeight: 1.3 }}>
-                    ここにZIPまたはフォルダを<br />ドラッグ＆ドロップ
-                  </p>
-                  <p className="pc-only" style={{ fontSize: '0.75rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-                    （Web版：1回最大10ファイルまで）
-                  </p>
-                  <p className="pc-only" style={{ fontSize: '0.8rem', color: '#0284c7', margin: 0, textDecoration: 'underline' }}>
-                    またはクリックしてファイルを選択
-                  </p>
-                  <p className="mobile-only" style={{ fontWeight: 600, fontSize: '1rem', color: '#0284c7', textDecoration: 'underline', margin: 0 }}>
-                    タップしてファイルを選択（最大10件）
-                  </p>
-                </div>
-              ) : (
-                <div className="list-items">
-                  {fileList.map((file, idx) => (
-                    <div
-                      key={idx}
-                      className={`list-item ${activeFile?.path === file.path ? 'selected' : ''}`}
-                      onClick={(e) => selectXMLFile(e, file)}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <FileText size={18} />
-                        <span>{file.name}</span>
-                      </div>
-                    </div>
-                  ))}
-                  {totalFileCount > 10 && (
-                    <div style={{
-                      margin: '8px 10px',
-                      padding: '10px',
-                      background: 'rgba(245, 158, 11, 0.1)',
-                      border: '1px solid rgba(245, 158, 11, 0.3)',
-                      borderRadius: '10px',
-                      fontSize: '0.8rem',
-                      color: '#b45309'
-                    }}>
-                      <div style={{ fontWeight: 700, marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <Info size={14} /> 表示制限のお知らせ
-                      </div>
-                      Web版の制限により、見つかった {totalFileCount} 件のうち先頭の10件のみ表示しています。全件の一括処理はWindows版をご利用ください。
-                    </div>
-                  )}
-                  <div className="drop-hint">
-                    <Plus size={14} />
-                    <span className="pc-only">ZIPまたはフォルダをさらに対象に追加</span>
-                    <span className="mobile-only inline">ファイルをさらに対象に追加</span>
-                  </div>
-                </div>
-              )}
-            </div>
-            {fileList.length === 0 && !isUploading && (
-              <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '12px', textAlign: 'center' }}>
-                ※ XMLファイルとスタイルシート（XSL）の入った<br />ZIPまたはフォルダをアップロードしてください
-              </p>
-            )}
-          </div>
-
-          {/* Step 2: プレビュー表示 */}
-          <div className={`step ${step === 3 || activeFile ? 'step-active' : ''} ${!activeFile ? 'step-inactive' : ''}`} style={{ margin: 0 }}>
-            <div className="step-header">
-              <span className="step-number">2</span>
-              <span className="step-title">プレビュー表示</span>
-            </div>
-            <p className="step-description" style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.5rem' }}>
-              表示タイプを選択してください。印刷やPDF保存はブラウザの標準機能をご利用ください。
-            </p>
-            <div className="button-group">
-              <button
-                disabled={!activeFile}
-                onClick={() => openPreview('tab')}
-                className={activeFile ? 'btn-primary-cta' : ''}
-              >
-                <Layout size={20} /> 新しいタブで表示
-              </button>
-              <button
-                disabled={!activeFile}
-                onClick={() => openPreview('window')}
-                className={activeFile ? 'btn-primary-cta' : ''}
-              >
-                <Printer size={20} /> 新しいウィンドウで表示
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div style={{
-          marginTop: '2rem',
-          padding: '1.25rem',
-          background: 'rgba(2, 132, 199, 0.05)',
-          border: '1px solid rgba(2, 132, 199, 0.1)',
-          borderRadius: '20px',
-          display: 'flex',
-          gap: '16px',
-          alignItems: 'flex-start',
-          maxWidth: '800px',
-          margin: '2rem auto 0 auto',
-          animation: 'slideUpFade 1.1s ease-out 0.4s backwards'
-        }}>
-          <ShieldCheck size={24} style={{ color: '#0284c7', marginTop: '2px', flexShrink: 0 }} />
-          <div style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.6' }}>
-            <span style={{ fontWeight: 700, color: '#0284c7', display: 'block', marginBottom: '6px', fontSize: '1rem' }}>セキュリティ・プライバシーについて</span>
-            アップロードされたファイルは個別のセッションで隔離して処理され、他者から閲覧されることはありません。また、2時間後にサーバーから自動的に完全削除されます。
-          </div>
-        </div>
-
-        {/* Usage Guide Section */}
-        <section className="guide-section" id="how-to-open-gov-xml">
-          <h2 className="guide-title">XMLファイルが開けない時の解決方法：かんたん3ステップ</h2>
-          <div className="guide-steps">
-            <div className="guide-step">
-              <div className="guide-icon-wrapper">
-                <Download size={32} />
-                <span className="guide-step-number-badge">1</span>
-              </div>
-              <h4>用意する</h4>
-              <p>e-Gov等から「公文書（ZIP形式）」をダウンロード。解凍は不要です。</p>
-            </div>
-            <div className="guide-arrow">
-              <div className="guide-arrow-body"></div>
-            </div>
-            <div className="guide-step">
-              <div className="guide-icon-wrapper">
-                <MousePointerClick size={32} />
-                <span className="guide-step-number-badge">2</span>
-              </div>
-              <h4>入れる</h4>
-              <p>ZIPファイルをそのまま、上のエリアにドロップまたは選択してください。</p>
-            </div>
-            <div className="guide-arrow">
-              <div className="guide-arrow-body"></div>
-            </div>
-            <div className="guide-step">
-              <div className="guide-icon-wrapper">
-                <Eye size={32} />
-                <span className="guide-step-number-badge">3</span>
-              </div>
-              <h4>見る</h4>
-              <p>読み込まれたファイル名をクリック。最適な形式で表示・印刷できます。</p>
+          <div className="hero-visual">
+            <div className="visual-card">
+              <Archive size={48} className="visual-icon" />
+              <div className="visual-arrow">→</div>
+              <FileText size={48} className="visual-icon primary" />
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* Section 2: Web Version Section */}
+        <section className="web-version-section" id="web-version">
+          <div className="section-header">
+            <h2 className="section-title">Web版（無料・即時解決）</h2>
+            <p className="section-tagline">自社の通知を今すぐ確認したい方へ</p>
+          </div>
+
+          <div className="card">
+            {/* Step 1: Upload */}
+            <div className={`step ${step === 1 || fileList.length > 0 ? 'step-active' : ''}`}>
+              <div className="step-header">
+                <span className="step-number">1</span>
+                <span className="step-title">アップロード</span>
+              </div>
+
+              <div
+                className={`smart-list-container ${isDragging ? 'dragging' : ''} ${isUploading ? 'uploading' : ''}`}
+                onDragOver={onDragOver}
+                onDragLeave={onDragLeave}
+                onDrop={onDrop}
+                onClick={onAreaClick}
+              >
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={onFileChange}
+                  style={{ display: 'none' }}
+                  multiple
+                  accept=".xml,.xsl,.zip"
+                />
+                {isUploading ? (
+                  <div className="upload-loader">読み込み中...</div>
+                ) : fileList.length === 0 ? (
+                  <div className="empty-drop-area">
+                    <Archive size={40} className="drop-icon" />
+                    <p className="drop-text pc-only">
+                      ここにZIPファイルをドラッグ＆ドロップ
+                    </p>
+                    <p className="drop-subtext pc-only">
+                      （Web版：1回最大10ファイルまで）
+                    </p>
+                    <p className="drop-link">
+                      またはクリックしてファイルを選択
+                    </p>
+                  </div>
+                ) : (
+                  <div className="list-items">
+                    {fileList.map((file, idx) => (
+                      <div
+                        key={idx}
+                        className={`list-item ${activeFile?.path === file.path ? 'selected' : ''}`}
+                        onClick={(e) => selectXMLFile(e, file)}
+                      >
+                        <FileText size={18} />
+                        <span>{file.name}</span>
+                      </div>
+                    ))}
+                    {totalFileCount > 10 && (
+                      <div className="limit-alert">
+                        <Info size={14} /> 10件まで表示中。全件処理はWindows版へ
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Step 2: Preview Mode selection and execution */}
+            <div className={`step ${step === 3 || activeFile ? 'step-active' : ''} ${!activeFile ? 'step-inactive' : ''}`}>
+              <div className="step-header">
+                <span className="step-number">2</span>
+                <span className="step-title">プレビュー表示</span>
+              </div>
+              <div className="button-group">
+                <button
+                  disabled={!activeFile}
+                  onClick={() => openPreview('tab')}
+                  className={activeFile ? 'btn-primary-cta' : ''}
+                >
+                  <Layout size={20} /> 新しいタブで表示
+                </button>
+                <button
+                  disabled={!activeFile}
+                  onClick={() => openPreview('window')}
+                  className={activeFile ? 'btn-primary-cta' : ''}
+                >
+                  <Printer size={20} /> 新しい窓で表示
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3: Security Warning Section */}
+        <section className="security-bridge-section">
+          <div className="warning-card">
+            <div className="warning-header">
+              <ShieldCheck size={32} className="warning-icon" />
+              <h3>その公文書、ブラウザにアップロードして大丈夫ですか？</h3>
+            </div>
+            <div className="warning-content">
+              <p>
+                士業・法人の皆様へ。顧客の機密データを含むXMLをインターネット上に流すことには、常に漏洩のリスクが伴います。
+                <strong>プロフェッショナルな現場には、通信を一切行わない「完全オフライン」の選択を推奨します。</strong>
+              </p>
+              <button onClick={() => setActiveTab('windows')} className="btn-outline-white">
+                安全なオフライン版のメリットを見る
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Windows Version Section */}
+        <section className="windows-version-section" id="windows-version">
+          <div className="section-header">
+            <h2 className="section-title">Windowsデベロッパー版</h2>
+            <p className="section-tagline">100%オフライン動作。プロのための信頼仕様。</p>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-item">
+              <ShieldCheck size={32} />
+              <h4>完全オフライン</h4>
+              <p>外部サーバーとの通信は一切なし。機密書類も安心して扱えます。</p>
+            </div>
+            <div className="feature-item">
+              <Archive size={32} />
+              <h4>ファイル数無制限</h4>
+              <p>大量の通知書も一括読み込み。リストから瞬時に切り替え可能。</p>
+            </div>
+            <div className="feature-item">
+              <Plus size={32} />
+              <h4>高速・快適</h4>
+              <p>PCネイティブ動作で、重いXMLもストレスなくプレビュー。</p>
+            </div>
+          </div>
+
+          <div className="price-card">
+            <div className="price-badge">買い切り・安心の試用期間あり</div>
+            <div className="price-amount">1,980<span>円（税込）</span></div>
+            <button onClick={() => setActiveTab('windows')} className="btn-primary-cta">
+              Windows版の詳細を見る
+            </button>
+          </div>
+        </section>
+
+        {/* Section 5: Comparison Table */}
+        <section className="comparison-section">
+          <h2 className="section-title">Web版とWindows版の比較</h2>
+          <div className="table-wrapper">
+            <table className="comparison-table">
+              <thead>
+                <tr>
+                  <th>比較項目</th>
+                  <th>Web版（無料）</th>
+                  <th>Windows版（プロ）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>対象ユーザー</td>
+                  <td>一般・小規模法人</td>
+                  <td>士業・中大規模法人</td>
+                </tr>
+                <tr>
+                  <td>セキュリティ</td>
+                  <td>サーバー処理（SSL）</td>
+                  <td>100%オフライン（最高）</td>
+                </tr>
+                <tr>
+                  <td>通信の有無</td>
+                  <td>あり</td>
+                  <td>なし</td>
+                </tr>
+                <tr>
+                  <td>処理制限</td>
+                  <td>1回10件まで</td>
+                  <td>無制限・一括処理</td>
+                </tr>
+                <tr>
+                  <td>価格</td>
+                  <td>完全無料</td>
+                  <td>1,980円（買い切り）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Section 6: FAQ Section */}
         <section className="faq-section" id="faq">
-          <h2 className="faq-title">e-Gov公文書XMLの見方・よくあるご質問</h2>
+          <h2 className="faq-title">よくあるご質問</h2>
           <div className="faq-list">
+            <div className="faq-item">
+              <div className="faq-question">IEモードが使えない環境でも表示できますか？</div>
+              <div className="faq-answer">はい。本ツールは独自の解析エンジンを使用しているため、EdgeのIEモード設定やInternet Explorerの有無に関わらず、最新のブラウザで閲覧可能です。</div>
+            </div>
+            <div className="faq-item">
+              <div className="faq-question">「社会保険料額通知書」などの特殊なXMLに対応していますか？</div>
+              <div className="faq-answer">はい。e-Govから発行される主要な通知文書（XSLスタイルシート同梱形式）に最適化されています。</div>
+            </div>
+            <div className="faq-item">
+              <div className="faq-question">マイナンバーを含む書類をアップロードしても安全ですか？</div>
+              <div className="faq-answer">技術的にはSSL暗号化されていますが、より高い安全性を求める場合は、PC内で完結するWindows版のご利用を強くお勧めします。</div>
+            </div>
             {faqs.map((faq, idx) => (
               <div key={idx} className={`faq-item ${openFaqIndex === idx ? 'open' : ''}`}>
                 <button
-                  className="faq-question"
+                  className="faq-question-btn"
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                 >
                   <span>{faq.q}</span>
@@ -538,7 +572,7 @@ const App: React.FC = () => {
                 </button>
                 {openFaqIndex === idx && (
                   <div
-                    className="faq-answer"
+                    className="faq-answer-content"
                     dangerouslySetInnerHTML={{ __html: faq.a }}
                   />
                 )}
@@ -546,7 +580,6 @@ const App: React.FC = () => {
             ))}
           </div>
         </section>
-
       </div>
 
       {/* Modal Overlay */}

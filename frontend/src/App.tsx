@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { FileText, Printer, Archive, Layout, ShieldCheck, X, Info, ExternalLink, Plus, ChevronDown } from 'lucide-react';
+import { FileText, Printer, Archive, Layout, ShieldCheck, X, Info, ExternalLink, Plus, ChevronDown, Download } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
@@ -494,11 +494,16 @@ const App: React.FC = () => {
           </div>
 
           <div className="price-card">
-            <div className="price-badge">買い切り・安心の試用期間あり</div>
+            <div className="price-badge">買い切り・安心の30日間無料トライアルあり</div>
             <div className="price-amount">1,980<span>円（税込）</span></div>
-            <button onClick={() => setActiveTab('windows')} className="btn-primary-cta">
-              Windows版の詳細を見る
-            </button>
+            <div className="cta-group-vertical">
+              <a href="https://github.com/goya-code-lab/xml-viewer/releases/download/v1.0.0/xmlview_viewer_dist.zip" className="btn-primary-cta btn-large">
+                <Download size={20} /> 無料トライアルをダウンロード
+              </a>
+              <button onClick={() => setActiveTab('windows')} className="btn-text-link">
+                インストール・機能の詳細を確認
+              </button>
+            </div>
           </div>
         </section>
 
@@ -518,27 +523,31 @@ const App: React.FC = () => {
                 <tr>
                   <td>対象ユーザー</td>
                   <td>一般・小規模法人</td>
-                  <td>士業・中大規模法人</td>
+                  <td className="highlight-cell">士業・中大規模法人</td>
                 </tr>
                 <tr>
                   <td>セキュリティ</td>
                   <td>サーバー処理（SSL）</td>
-                  <td>100%オフライン（最高）</td>
+                  <td className="highlight-cell">
+                    <span className="badge-rank">最高ランク</span>
+                    <br />
+                    <strong>100%オフライン</strong>
+                  </td>
                 </tr>
                 <tr>
                   <td>通信の有無</td>
                   <td>あり</td>
-                  <td>なし</td>
+                  <td className="highlight-cell">完全なし</td>
                 </tr>
                 <tr>
                   <td>処理制限</td>
                   <td>1回10件まで</td>
-                  <td>無制限・複数ファイル対応</td>
+                  <td className="highlight-cell">無制限・複数ファイル</td>
                 </tr>
                 <tr>
                   <td>価格</td>
                   <td>完全無料</td>
-                  <td>1,980円（買い切り）</td>
+                  <td className="highlight-cell">1,980円（買い切り）</td>
                 </tr>
               </tbody>
             </table>

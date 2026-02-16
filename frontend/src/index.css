@@ -655,6 +655,40 @@ body {
 .comparison-table td:nth-child(3) {
   color: var(--secondary);
   font-weight: 700;
+  position: relative;
+}
+
+.highlight-cell {
+  background: rgba(2, 132, 199, 0.04);
+  border-left: 2px solid rgba(2, 132, 199, 0.1);
+  border-right: 2px solid rgba(2, 132, 199, 0.1);
+}
+
+tr:last-child .highlight-cell {
+  border-bottom: 2px solid rgba(2, 132, 199, 0.1);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+thead th:nth-child(3) {
+  background: var(--secondary);
+  color: white;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.badge-rank {
+  display: inline-block;
+  background: #fdf2f8;
+  color: #db2777;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(219, 39, 119, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Buttons */

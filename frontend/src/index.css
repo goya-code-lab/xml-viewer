@@ -110,7 +110,14 @@ body {
   font-size: 1.25rem;
   line-height: 1.6;
   max-width: 700px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 3rem auto;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+  margin-bottom: 2rem;
 }
 
 .visual-card {
@@ -124,6 +131,21 @@ body {
   border: 1px solid rgba(226, 232, 240, 0.8);
   transform: rotateX(10deg);
   animation: float 6s ease-in-out infinite;
+}
+
+.visual-icon {
+  color: #cbd5e1;
+}
+
+.visual-icon.primary {
+  color: var(--primary);
+  filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.3));
+}
+
+.visual-arrow {
+  font-size: 2rem;
+  color: #e2e8f0;
+  font-weight: 300;
 }
 
 /* Card & App Interface (Crystal Clean) */

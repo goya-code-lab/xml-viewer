@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { FileText, Printer, Archive, Layout, ShieldCheck, X, Info, ExternalLink, Plus, ChevronDown, Download } from 'lucide-react';
+import { FileText, Printer, Archive, Layout, ShieldCheck, X, Info, ExternalLink, Plus, ChevronDown, Download, Check } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
@@ -529,7 +529,9 @@ const App: React.FC = () => {
                   <td>セキュリティ</td>
                   <td>サーバー処理（SSL）</td>
                   <td className="highlight-cell">
-                    <span className="badge-rank">最高ランク</span>
+                    <div className="badge-rank">
+                      <Check size={14} strokeWidth={3} /> RECOMMENDED
+                    </div>
                     <br />
                     <strong>100%オフライン</strong>
                   </td>

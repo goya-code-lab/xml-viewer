@@ -252,8 +252,9 @@ const App: React.FC = () => {
               Web版を試してみる
             </button>
           </div>
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button onClick={() => setShowBlog(false)} className="btn-text-link">← トップページに戻る</button>
+          <div style={{ textAlign: 'center', marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+            <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-text-link">← トップページに戻る</button>
           </div>
         </section>
       </div>
@@ -634,8 +635,9 @@ const App: React.FC = () => {
             </button>
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
             <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-text-link">← トップページに戻る</button>
           </div>
         </section>
       </div>

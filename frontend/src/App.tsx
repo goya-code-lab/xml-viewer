@@ -188,7 +188,9 @@ const App: React.FC = () => {
         <section className="conclusion">
           <h3>まとめ</h3>
           <p>
-            道具の設定に時間を溶かすのは、もう終わりにしましょう。本来の業務である「経営」や「顧客対応」に集中するために。まずは無料のWeb版で、その圧倒的な速さを体感してください。
+            XMLファイルを見るためだけにあなたの貴重な時間を無駄に消費するのは、もう終わりにしましょう。<br />
+            XMLファイルはサクッとみて、本来業務へ集中！<br />
+            まずは無料のWeb版で、その圧倒的な速さを体感してください。
           </p>
           <div className="blog-footer-cta">
             <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary">

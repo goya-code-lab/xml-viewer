@@ -552,6 +552,7 @@ const App: React.FC = () => {
           「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
           そんな経験はありませんか？
         </p>
+        <img src="/assets/20260217_blog02_01.jpg" alt="3ステップ印刷のイメージ" className="blog-image" style={{ width: '100%', borderRadius: '16px', margin: '1rem 0 2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
 
         <p>
           マニュアルを読んでも「IEモード」だの「信頼済みサイト」だの、聞き慣れない専門用語ばかり。ITが苦手な方にとって、今の電子公文書はあまりにも不親切です。
@@ -573,6 +574,7 @@ const App: React.FC = () => {
               <strong style={{ color: '#92400e' }}>「ダウンロードしたZIPファイルを解凍しないでください」</strong>
             </div>
             <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>中身を取り出そうとせず、そのままデスクトップやダウンロードフォルダに置いておくだけで準備完了です。</p>
+            <img src="/assets/20260217_blog02_02-1.png" alt="ZIPの準備" className="blog-image" style={{ width: '100%', maxWidth: '600px', borderRadius: '12px', margin: '1.5rem 0', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', display: 'block' }} />
           </div>
 
           <div className="print-step-card">
@@ -581,6 +583,7 @@ const App: React.FC = () => {
             <p>次に、e-Gov公文書XMLビューアを開きます。</p>
             <p>画面の真ん中に大きな枠がありますよね？ <br />そこに、先ほどのZIPファイルをマウスで引きずって（ドラッグ＆ドロップ）、「ポン」と置く。 <br />あとは見たいファイル選んで、プレビューボタンを押すだけ！</p>
             <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>1秒後、あなたの目の前には、あんなに読めるはずのなかったXMLが「見慣れた通知書の形」になって現れます。</p>
+            <img src="/assets/20260217_blog02_02-2.png" alt="ドラッグ＆ドロップ" className="blog-image" style={{ width: '100%', maxWidth: '600px', borderRadius: '12px', margin: '1.5rem 0', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', display: 'block' }} />
           </div>
 
           <div className="print-step-card">
@@ -588,6 +591,7 @@ const App: React.FC = () => {
             <h3>ステップ3：あとは「印刷」ボタンを押すだけ</h3>
             <p>表示されたら、画面にある「印刷」ボタン、あるいはブラウザの印刷機能（Ctrl + P）を使うだけ。</p>
             <p>「IEモードだと印刷がずれる」「真っ白で出てくる」といったトラブルとも、これでおさらばです。最新のブラウザで動くので、印刷の仕上がりも非常に綺麗です。</p>
+            <img src="/assets/20260217_blog02_02-3.png" alt="印刷ボタン" className="blog-image" style={{ width: '100%', maxWidth: '600px', borderRadius: '12px', margin: '1.5rem 0', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', display: 'block' }} />
           </div>
         </div>
 

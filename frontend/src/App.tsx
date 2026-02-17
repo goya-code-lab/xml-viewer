@@ -597,7 +597,7 @@ const App: React.FC = () => {
           <h2 style={{ color: '#1e293b', marginTop: 0 }}>どうしても「セキュリティが心配」というプロの方へ</h2>
           <p>「ITは苦手だけど、お客様の大事な書類をネットに上げるのは気が引ける……」<br />その慎重さは、プロとして素晴らしい姿勢です。</p>
 
-          <p>もしあなたが社労士事務所や法人の事務担当者で、より高い安全性を求めるなら、<strong>「インターネットに繋がなくても動くWindows版」</strong>がおすすめです。</p>
+          <p>もしあなたが社労士事務所や法人の事務担当者で、より高い安全性を求めるなら、<br /><strong>「インターネットに繋がなくても動くWindows版」</strong>がおすすめです。</p>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '2rem 0' }}>
             <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>

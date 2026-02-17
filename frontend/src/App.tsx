@@ -538,9 +538,9 @@ const App: React.FC = () => {
       <div className="blog-nav-top">
         <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
       </div>
-      <div className="blog-header" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%)', padding: '3rem 2rem', borderRadius: '24px' }}>
-        <span className="blog-category" style={{ background: '#0d9488', color: 'white' }}>How to Use</span>
-        <h1 className="blog-title" style={{ color: '#0f172a' }}>IT音痴でも大丈夫。<br />Edgeの設定をいじらずにXMLを印刷する3つのステップ</h1>
+      <div className="blog-header">
+        <span className="blog-category">How to Use</span>
+        <h1 className="blog-title">IT音痴でも大丈夫。<br />Edgeの設定をいじらずにXMLを印刷する3つのステップ</h1>
         <div className="blog-meta">
           <span className="blog-date">2026.02.17</span>
           <span className="blog-author">Goya Code Lab</span>
@@ -548,7 +548,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="blog-content">
-        <img src="/assets/20260217_blog02_01.jpg" alt="3ステップ印刷のイメージ" className="blog-image" style={{ width: '100%', borderRadius: '16px', margin: '0 0 2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+        <img src="/assets/20260217_blog02_01.jpg" alt="3ステップ印刷のイメージ" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '0 0 2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
         <p className="lead-text">
           「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
           そんな経験はありませんか？

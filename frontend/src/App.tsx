@@ -73,10 +73,8 @@ const App: React.FC = () => {
   const modalBodyRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (activeTab || showBlog) {
-      window.scrollTo(0, 0);
-    }
-  }, [activeTab, showBlog]);
+    window.scrollTo(0, 0);
+  }, [activeTab, showBlog, currentPostId]);
 
   const renderBlog = () => {
     if (!currentPostId) return renderBlogIndex();

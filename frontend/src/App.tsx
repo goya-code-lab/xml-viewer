@@ -89,17 +89,26 @@ const App: React.FC = () => {
 
       <div className="blog-content">
         <p className="lead-text">
-          e-Govから届く<strong>「[e-Gov]通知文書送達のお知らせ」</strong>というメール。<br />
-          「また来たか」と溜息をつきながらログインし、ようやくダウンロードしたXMLファイル。しかし、それを開こうとした瞬間に本当の「苦行」が始まります。
+          電子申請e-Govから届く<strong>「通知文書送達のお知らせ」</strong>メール。<br />
+          内容確認後、e-Govにログインし、対象の通知ファイル（XMLファイル）をダウンロード。
         </p>
 
-        <div className="quote-box">
-          「EdgeのIEモードを有効にしてください」<br />
-          「信頼済みサイトに登録してください」
+        <p>
+          しかし、そのXMLファイルを開くための<strong>「苦行」</strong>が始まります。
+        </p>
+        <img src="/assets/downloaded_files.png" alt="ダウンロードされたファイル" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+
+        <div className="quote-box" style={{ textAlign: 'left' }}>
+          ①Microsoft Edgeを開き<br />
+          ②設定から古いIEモードを許可し<br />
+          ③対象のXMLファイルをページ追加設定し<br />
+          ④対象のXMLファイルがある場所（Path）をEdge上で指定して開く
         </div>
+        <img src="/assets/edge_settings.png" alt="Edge設定画面" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
 
         <p>
-          社会保険料の通知をたった1枚確認するためだけに、なぜITエンジニアのような複雑な設定を強いられるのか。そんな「IT虐待」に近い状況に、もう終止符を打ちませんか？
+          社会保険料の通知をたった1枚確認するためだけに、毎回面倒な設定を強いられるのか。<br />
+          こんな面倒は、もう終止符を打ちませんか？
         </p>
 
         <h2>なぜe-GovのXMLは、普通に開けないのか？</h2>

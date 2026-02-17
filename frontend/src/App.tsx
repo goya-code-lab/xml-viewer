@@ -548,11 +548,11 @@ const App: React.FC = () => {
       </div>
 
       <div className="blog-content">
+        <img src="/assets/20260217_blog02_01.jpg" alt="3ステップ印刷のイメージ" className="blog-image" style={{ width: '100%', borderRadius: '16px', margin: '0 0 2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
         <p className="lead-text">
           「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
           そんな経験はありませんか？
         </p>
-        <img src="/assets/20260217_blog02_01.jpg" alt="3ステップ印刷のイメージ" className="blog-image" style={{ width: '100%', borderRadius: '16px', margin: '1rem 0 2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
 
         <p>
           マニュアルを読んでも「IEモード」だの「信頼済みサイト」だの、聞き慣れない専門用語ばかり。ITが苦手な方にとって、今の電子公文書はあまりにも不親切です。

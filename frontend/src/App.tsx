@@ -103,7 +103,7 @@ const App: React.FC = () => {
           社会保険料の通知をたった1枚確認するためだけに、毎回面倒な設定を強いられるのか。<br />
           こんな面倒は、もう終止符を打ちませんか？
         </p>
-        <img src="/assets/tired_man.png" alt="面倒な設定を強いられている男性" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+        <img src="/assets/tired_man.jpg" alt="面倒な設定を強いられている男性" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
 
         <h2>なぜe-GovのXMLは、普通に開けないのか？</h2>
         <p>

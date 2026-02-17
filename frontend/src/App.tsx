@@ -56,7 +56,124 @@ interface XMLFile {
 
 const App: React.FC = () => {
   const [sessionId] = useState(() => uuidv4());
-  const [fileList, setFileList] = useState<XMLFile[]>([]);
+  const [activeFile, setActiveFile] = useState<XMLFile | null>(null);
+  const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'scta' | null>(null);
+  const [showBlog, setShowBlog] = useState(false);
+
+  useEffect(() => {
+    if (activeTab || showBlog) {
+      window.scrollTo(0, 0);
+    }
+  }, [activeTab, showBlog]);
+
+  const renderBlog = () => (
+    <div className="blog-post-page">
+      <div className="blog-header">
+        <span className="blog-category">Tips & Release</span>
+        <h1 className="blog-title">EdgeのIEモード設定に疲れた人へ。<br />e-GovのXML公文書を「設定不要・1秒」で開く裏技</h1>
+        <div className="blog-meta">
+          <span className="blog-date">2026.02.17</span>
+          <span className="blog-author">Goya Code Lab</span>
+        </div>
+      </div>
+
+      <div className="blog-content">
+        <p className="lead-text">
+          e-Govから届く<strong>「[e-Gov]通知文書送達のお知らせ」</strong>というメール。<br />
+          「また来たか」と溜息をつきながらログインし、ようやくダウンロードしたXMLファイル。しかし、それを開こうとした瞬間に本当の「苦行」が始まります。
+        </p>
+
+        <div className="quote-box">
+          「EdgeのIEモードを有効にしてください」<br />
+          「信頼済みサイトに登録してください」
+        </div>
+
+        <p>
+          社会保険料の通知をたった1枚確認するためだけに、なぜITエンジニアのような複雑な設定を強いられるのか。そんな「IT虐待」に近い状況に、もう終止符を打ちませんか？
+        </p>
+
+        <h2>なぜe-GovのXMLは、普通に開けないのか？</h2>
+        <p>
+          日本の電子公文書（XML）は、それ単体ではただの記号の羅列です。人間が読める形式にするには、<strong>「XSLスタイルシート」</strong>という設計図を正しく読み込ませる必要があります。
+        </p>
+        <p>
+          しかし、多くのブラウザはこの「外部設計図の読み込み」をセキュリティ上の理由で制限しています。そのため、古びた技術である「IEモード」を使わなければならないのが現状です。
+        </p>
+
+        <div className="highlight-section">
+          <h2>設定不要・ドロップ1秒。最短の解決策がここにあります</h2>
+          <p>
+            当サイトの<strong>「e-Gov公文書XMLビューア」</strong>は、そんな面倒な設定をすべて過去のものにします。
+          </p>
+          <div className="step-box">
+            <div className="step-item">
+              <span className="step-label">手順</span>
+              ダウンロードしたZIPファイルを、画面の枠内にドロップする。
+            </div>
+            <div className="step-arrow">↓</div>
+            <div className="step-item result">
+              <span className="step-label">結果</span>
+              <strong>1秒後</strong>には、見慣れた「社会保険料額通知書」がブラウザ上に美しく表示されます。
+            </div>
+          </div>
+          <p>
+            IEモードの切り替えも、信頼済みサイトの登録も、一切不要です。ブラウザさえあれば、Macでもスマホでも中身を確認できます。
+          </p>
+          <div className="center-cta">
+            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-primary-cta">
+              今すぐ無料のWeb版を試す
+            </button>
+          </div>
+        </div>
+
+        <h2>社労士・プロの現場が「Windows版」を選ぶ理由</h2>
+        <p>
+          「便利だけど、顧客の機密データをネットに上げるのは不安……」<br />
+          そんな責任感の強い社労士や士業の皆様には、<strong>完全オフラインで動作する「Windowsデスクトップ版」</strong>を用意しています。
+        </p>
+
+        <div className="feature-list">
+          <div className="feature-row">
+            <strong>100%オフライン：</strong> 外部との通信を一切行わないため、情報漏洩リスクはゼロ。
+          </div>
+          <div className="feature-row">
+            <strong>ファイル数無制限：</strong> 大量の決定通知書も、リスト形式でサクサク切り替え。
+          </div>
+          <div className="feature-row">
+            <strong>買い切り1,980円：</strong> 1度のランチ代程度の投資で、毎月の「IEモード設定のイライラ」から解放されます。
+          </div>
+        </div>
+
+        <div className="support-list">
+          <h3>対応書類の例（SEO対策）</h3>
+          <ul>
+            <li>社会保険料額通知書（健康保険・厚生年金保険）</li>
+            <li>被保険者標準報酬決定通知書</li>
+            <li>オンライン事業所年金情報サービスから届く各種通知</li>
+            <li>その他、e-Gov / e-Tax / eLTAX 発行のXML公文書</li>
+          </ul>
+        </div>
+
+        <section className="conclusion">
+          <h3>まとめ</h3>
+          <p>
+            道具の設定に時間を溶かすのは、もう終わりにしましょう。本来の業務である「経営」や「顧客対応」に集中するために。まずは無料のWeb版で、その圧倒的な速さを体感してください。
+          </p>
+          <div className="blog-footer-cta">
+            <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary">
+              Windows版の詳細を見る
+            </button>
+            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-primary-cta">
+              Web版を試してみる
+            </button>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+             <button onClick={() => setShowBlog(false)} className="btn-text-link">← トップページに戻る</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
   const [activeFile, setActiveFile] = useState<XMLFile | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [totalFileCount, setTotalFileCount] = useState(0);

@@ -142,7 +142,16 @@ const App: React.FC = () => {
             IEモードの切り替えも、信頼済みサイトの登録も、一切不要です。ブラウザさえあれば、Macでもスマホでも中身を確認できます。
           </p>
           <div className="center-cta">
-            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-primary-cta">
+            <button
+              onClick={() => {
+                setShowBlog(false);
+                setActiveTab(null);
+                setTimeout(() => {
+                  document.getElementById('web-version')?.scrollIntoView({ behavior: 'smooth' });
+                }, 0);
+              }}
+              className="btn-primary-cta"
+            >
               今すぐ無料のWeb版を試す
             </button>
           </div>
@@ -185,7 +194,16 @@ const App: React.FC = () => {
             <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary">
               Windows版の詳細を見る
             </button>
-            <button onClick={() => { setShowBlog(false); setActiveTab(null); }} className="btn-primary-cta">
+            <button
+              onClick={() => {
+                setShowBlog(false);
+                setActiveTab(null);
+                setTimeout(() => {
+                  document.getElementById('web-version')?.scrollIntoView({ behavior: 'smooth' });
+                }, 0);
+              }}
+              className="btn-primary-cta"
+            >
               Web版を試してみる
             </button>
           </div>
@@ -233,6 +251,20 @@ const App: React.FC = () => {
       modalBodyRef.current.scrollTop = 0;
     }
   }, [activeTab]);
+
+  // Handle scroll to web-version when blog is closed
+  useEffect(() => {
+    if (!showBlog && !activeTab) {
+      // Small delay to ensure the main section has rendered
+      const timer = setTimeout(() => {
+        const element = document.getElementById('web-version');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [showBlog, activeTab]);
 
   // SEO: FAQ Schema (JSON-LD)
   useEffect(() => {

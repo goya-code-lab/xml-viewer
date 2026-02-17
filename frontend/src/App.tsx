@@ -123,7 +123,7 @@ const App: React.FC = () => {
         </p>
 
         <div className="highlight-section">
-          <h2>設定不要・ドロップ1秒。最短の解決策がここにあります</h2>
+          <h2 style={{ textAlign: 'center' }}>設定不要・ドロップ1秒<br />最短の解決策がここにあります</h2>
           <p>
             当サイトの<strong>「e-Gov公文書XMLビューア」</strong>は、そんな面倒な設定をすべて過去のものにします。
           </p>
@@ -167,7 +167,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="support-list">
-          <h3>対応書類の例（SEO対策）</h3>
+          <h3>対応書類の例</h3>
           <ul>
             <li>社会保険料額通知書（健康保険・厚生年金保険）</li>
             <li>被保険者標準報酬決定通知書</li>

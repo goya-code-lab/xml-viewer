@@ -533,6 +533,115 @@ const App: React.FC = () => {
     }
   };
 
+  const renderPrintStepsArticle = () => (
+    <div className="blog-post-page">
+      <div className="blog-nav-top">
+        <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+      </div>
+      <div className="blog-header" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%)', padding: '3rem 2rem', borderRadius: '24px' }}>
+        <span className="blog-category" style={{ background: '#0d9488', color: 'white' }}>How to Use</span>
+        <h1 className="blog-title" style={{ color: '#0f172a' }}>IT音痴でも大丈夫。<br />Edgeの設定をいじらずにXMLを印刷する3つのステップ</h1>
+        <div className="blog-meta">
+          <span className="blog-date">2026.02.17</span>
+          <span className="blog-author">Goya Code Lab</span>
+        </div>
+      </div>
+
+      <div className="blog-content">
+        <p className="lead-text">
+          「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
+          そんな経験はありませんか？
+        </p>
+
+        <p>
+          マニュアルを読んでも「IEモード」だの「信頼済みサイト」だの、聞き慣れない専門用語ばかり。ITが苦手な方にとって、今の電子公文書はあまりにも不親切です。
+        </p>
+
+        <div style={{ background: '#fef2f2', padding: '1.5rem', borderRadius: '16px', border: '1px solid #fee2e2', margin: '2rem 0' }}>
+          <p style={{ margin: 0, color: '#991b1b' }}>
+            でも、安心してください。あなたは、ブラウザの設定なんて一切いじる必要はありません。<br />
+            たった3つのステップで、誰でも今すぐXMLを紙に印刷できる「魔法のツール」の使い方を教えます。
+          </p>
+        </div>
+
+        <div className="print-steps-container">
+          <div className="print-step-card">
+            <div className="step-number">1</div>
+            <h3>ステップ1：e-Govからダウンロードした「ZIP」を用意する</h3>
+            <p>まずは、e-Govから届いた通知ファイルをダウンロードしてください。ここで大切なポイントが1つあります。</p>
+            <div style={{ background: '#fffbeb', padding: '1rem', borderRadius: '12px', border: '1px solid #fef3c7', marginTop: '1rem' }}>
+              <strong style={{ color: '#92400e' }}>「ダウンロードしたZIPファイルを解凍しないでください」</strong>
+            </div>
+            <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>中身を取り出そうとせず、そのままデスクトップやダウンロードフォルダに置いておくだけで準備完了です。</p>
+          </div>
+
+          <div className="print-step-card">
+            <div className="step-number">2</div>
+            <h3>ステップ2：サイトに「ポン」と置くだけ</h3>
+            <p>次に、e-Gov公文書XMLビューアを開きます。</p>
+            <p>画面の真ん中に大きな枠がありますよね？ そこに、先ほどのZIPファイルをマウスで引きずって（ドラッグ＆ドロップ）、「ポン」と置く。 これだけです。</p>
+            <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>1秒後、あなたの目の前には、あんなに読めるはずのなかったXMLが「見慣れた通知書の形」になって現れます。</p>
+          </div>
+
+          <div className="print-step-card">
+            <div className="step-number">3</div>
+            <h3>ステップ3：あとは「印刷」ボタンを押すだけ</h3>
+            <p>表示されたら、画面にある「印刷」ボタン、あるいはブラウザの印刷機能（Ctrl + P）を使うだけ。</p>
+            <p>「IEモードだと印刷がずれる」「真っ白で出てくる」といったトラブルとも、これでおさらばです。最新のブラウザで動くので、印刷の仕上がりも非常に綺麗です。</p>
+          </div>
+        </div>
+
+        <section style={{ background: '#f8fafc', padding: '2rem', borderRadius: '24px', border: '1px solid #e2e8f0', margin: '3rem 0' }}>
+          <h2 style={{ color: '#1e293b', marginTop: 0 }}>どうしても「セキュリティが心配」というプロの方へ</h2>
+          <p>「ITは苦手だけど、お客様の大事な書類をネットに上げるのは気が引ける……」<br />その慎重さは、プロとして素晴らしい姿勢です。</p>
+
+          <p>もしあなたが社労士事務所や法人の事務担当者で、より高い安全性を求めるなら、<strong>「インターネットに繋がなくても動くWindows版」</strong>がおすすめです。</p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '2rem 0' }}>
+            <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+              <h4 style={{ color: '#0d9488', margin: '0 10px' }}>安心</h4>
+              <p style={{ margin: 0, fontSize: '0.9rem' }}>パソコンの中で完結。データが外に出ない。</p>
+            </div>
+            <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+              <h4 style={{ color: '#0d9488', margin: '0 0 10px 0' }}>簡単</h4>
+              <p style={{ margin: 0, fontSize: '0.9rem' }}>一度パソコンに入れれば、あとはアイコンをダブルクリックするだけ。</p>
+            </div>
+          </div>
+
+          <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary" style={{ width: '100%' }}>
+            Windows版の詳細を見る
+          </button>
+        </section>
+
+        <section className="conclusion">
+          <h3>まとめ</h3>
+          <p>
+            IT音痴なのは、あなたのせいではありません。道具が難しすぎるのが悪いのです。<br />
+            難しい設定に時間を溶かすのはもうやめて、この「3ステップ」でサクッと仕事を終わらせてしまいましょう！
+          </p>
+
+          <div style={{ background: '#ecfdf5', padding: '2rem', borderRadius: '24px', border: '1px solid #d1fae5', textAlign: 'center', margin: '2rem 0' }}>
+            <p style={{ fontWeight: 700, color: '#065f46', marginBottom: '1.5rem' }}>まずは無料のWeb版で「えっ、こんなに簡単なの？」という感動を味わってください。</p>
+            <button
+              onClick={() => {
+                setShowBlog(false);
+                setActiveTab(null);
+                setPendingScroll(true);
+              }}
+              className="btn-primary-cta"
+            >
+              今すぐWeb版を試す
+            </button>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div className="background-wrapper">
@@ -999,85 +1108,85 @@ const App: React.FC = () => {
                   <li>ご入力いただいたメールアドレスに誤りがなかったか</li>
                   <li>ドメイン指定受信設定（@goya-code-lab.jp からのメールを許可）</li>
                 </ul>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' } >
                   解決しない場合は、こちらの<a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。<br />
-                  決済状況を確認の上、対応させていただきます。
-                </p>
-              </div>
+                決済状況を確認の上、対応させていただきます。
+              </p>
             </div>
-            <div className="content-page" style={{ display: activeTab === 'scta' ? 'block' : 'none' }}>
-              <h2>特定商取引法に基づく表記</h2>
-              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
-                <tbody>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', width: '30%', color: '#64748b' }}>販売業者</th>
-                    <td style={{ padding: '12px' }}>Goya Code Lab</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
-                    <td style={{ padding: '12px' }}>田中 聡</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
-                    <td style={{ padding: '12px' }}>
-                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
-                      <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>電話番号</th>
-                    <td style={{ padding: '12px' }}>
-                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>メールアドレス</th>
-                    <td style={{ padding: '12px' }}>support@goya-code-lab.jp</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
-                    <td style={{ padding: '12px' }}>
-                      1,980円（税込）
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
-                    <td style={{ padding: '12px' }}>
-                      なし（ダウンロード販売のため）
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
-                    <td style={{ padding: '12px' }}>クレジットカード決済</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
-                    <td style={{ padding: '12px' }}>商品注文確定時にお支払いが確定します。</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
-                    <td style={{ padding: '12px' }}>代金決済完了後、即座にライセンスキーをメールにて送付します。</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
-                    <td style={{ padding: '12px' }}>
-                      商品（ライセンスキー）の性質上、決済完了後の返品・キャンセルはお受けできません。<br />
-                      購入前に試用版にて動作を確認の上、お申し込みください。
-                    </td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>動作環境</th>
-                    <td style={{ padding: '12px' }}>商品ページ、または配布ソフトウェアの説明書に記載。</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          </div>
+          <div className="content-page" style={{ display: activeTab === 'scta' ? 'block' : 'none' }}>
+            <h2>特定商取引法に基づく表記</h2>
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
+              <tbody>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', width: '30%', color: '#64748b' }}>販売業者</th>
+                  <td style={{ padding: '12px' }}>Goya Code Lab</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
+                  <td style={{ padding: '12px' }}>田中 聡</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
+                  <td style={{ padding: '12px' }}>
+                    特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
+                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>電話番号</th>
+                  <td style={{ padding: '12px' }}>
+                    特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>メールアドレス</th>
+                  <td style={{ padding: '12px' }}>support@goya-code-lab.jp</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
+                  <td style={{ padding: '12px' }}>
+                    1,980円（税込）
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
+                  <td style={{ padding: '12px' }}>
+                    なし（ダウンロード販売のため）
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
+                  <td style={{ padding: '12px' }}>クレジットカード決済</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
+                  <td style={{ padding: '12px' }}>商品注文確定時にお支払いが確定します。</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
+                  <td style={{ padding: '12px' }}>代金決済完了後、即座にライセンスキーをメールにて送付します。</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
+                  <td style={{ padding: '12px' }}>
+                    商品（ライセンスキー）の性質上、決済完了後の返品・キャンセルはお受けできません。<br />
+                    購入前に試用版にて動作を確認の上、お申し込みください。
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>動作環境</th>
+                  <td style={{ padding: '12px' }}>商品ページ、または配布ソフトウェアの説明書に記載。</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+    </div >
 
-      {/* Footer Navigation Updates */}
-      <footer className="footer-section">
+      {/* Footer Navigation Updates */ }
+      < footer className = "footer-section" >
         <div className="footer-content">
           <div className="footer-column">
             <div className="footer-group-title">
@@ -1128,121 +1237,9 @@ const App: React.FC = () => {
         <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
           © 2026 Goya Code Lab
         </div>
-      </footer>
+      </footer >
     </>
   );
 };
 
 export default App;
-      </div >
-    </div >
-  );
-
-const renderPrintStepsArticle = () => (
-  <div className="blog-post-page">
-    <div className="blog-nav-top">
-      <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
-    </div>
-    <div className="blog-header" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%)', padding: '3rem 2rem', borderRadius: '24px' }}>
-      <span className="blog-category" style={{ background: '#0d9488', color: 'white' }}>How to Use</span>
-      <h1 className="blog-title" style={{ color: '#0f172a' }}>IT音痴でも大丈夫。<br />Edgeの設定をいじらずにXMLを印刷する3つのステップ</h1>
-      <div className="blog-meta">
-        <span className="blog-date">2026.02.17</span>
-        <span className="blog-author">Goya Code Lab</span>
-      </div>
-    </div>
-
-    <div className="blog-content">
-      <p className="lead-text">
-        「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
-        そんな経験はありませんか？
-      </p>
-
-      <p>
-        マニュアルを読んでも「IEモード」だの「信頼済みサイト」だの、聞き慣れない専門用語ばかり。ITが苦手な方にとって、今の電子公文書はあまりにも不親切です。
-      </p>
-
-      <div style={{ background: '#fef2f2', padding: '1.5rem', borderRadius: '16px', border: '1px solid #fee2e2', margin: '2rem 0' }}>
-        <p style={{ margin: 0, color: '#991b1b' }}>
-          でも、安心してください。あなたは、ブラウザの設定なんて一切いじる必要はありません。<br />
-          たった3つのステップで、誰でも今すぐXMLを紙に印刷できる「魔法のツール」の使い方を教えます。
-        </p>
-      </div>
-
-      <div className="print-steps-container">
-        <div className="print-step-card">
-          <div className="step-number">1</div>
-          <h3>ステップ1：e-Govからダウンロードした「ZIP」を用意する</h3>
-          <p>まずは、e-Govから届いた通知ファイルをダウンロードしてください。ここで大切なポイントが1つあります。</p>
-          <div style={{ background: '#fffbeb', padding: '1rem', borderRadius: '12px', border: '1px solid #fef3c7', marginTop: '1rem' }}>
-            <strong style={{ color: '#92400e' }}>「ダウンロードしたZIPファイルを解凍しないでください」</strong>
-          </div>
-          <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>中身を取り出そうとせず、そのままデスクトップやダウンロードフォルダに置いておくだけで準備完了です。</p>
-        </div>
-
-        <div className="print-step-card">
-          <div className="step-number">2</div>
-          <h3>ステップ2：サイトに「ポン」と置くだけ</h3>
-          <p>次に、e-Gov公文書XMLビューアを開きます。</p>
-          <p>画面の真ん中に大きな枠がありますよね？ そこに、先ほどのZIPファイルをマウスで引きずって（ドラッグ＆ドロップ）、「ポン」と置く。 これだけです。</p>
-          <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>1秒後、あなたの目の前には、あんなに読めるはずのなかったXMLが「見慣れた通知書の形」になって現れます。</p>
-        </div>
-
-        <div className="print-step-card">
-          <div className="step-number">3</div>
-          <h3>ステップ3：あとは「印刷」ボタンを押すだけ</h3>
-          <p>表示されたら、画面にある「印刷」ボタン、あるいはブラウザの印刷機能（Ctrl + P）を使うだけ。</p>
-          <p>「IEモードだと印刷がずれる」「真っ白で出てくる」といったトラブルとも、これでおさらばです。最新のブラウザで動くので、印刷の仕上がりも非常に綺麗です。</p>
-        </div>
-      </div>
-
-      <section style={{ background: '#f8fafc', padding: '2rem', borderRadius: '24px', border: '1px solid #e2e8f0', margin: '3rem 0' }}>
-        <h2 style={{ color: '#1e293b', marginTop: 0 }}>どうしても「セキュリティが心配」というプロの方へ</h2>
-        <p>「ITは苦手だけど、お客様の大事な書類をネットに上げるのは気が引ける……」<br />その慎重さは、プロとして素晴らしい姿勢です。</p>
-
-        <p>もしあなたが社労士事務所や法人の事務担当者で、より高い安全性を求めるなら、<strong>「インターネットに繋がなくても動くWindows版」</strong>がおすすめです。</p>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '2rem 0' }}>
-          <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-            <h4 style={{ color: '#0d9488', margin: '0 10px' }}>安心</h4>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>パソコンの中で完結。データが外に出ない。</p>
-          </div>
-          <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-            <h4 style={{ color: '#0d9488', margin: '0 0 10px 0' }}>簡単</h4>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>一度パソコンに入れれば、あとはアイコンをダブルクリックするだけ。</p>
-          </div>
-        </div>
-
-        <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary" style={{ width: '100%' }}>
-          Windows版の詳細を見る
-        </button>
-      </section>
-
-      <section className="conclusion">
-        <h3>まとめ</h3>
-        <p>
-          IT音痴なのは、あなたのせいではありません。道具が難しすぎるのが悪いのです。<br />
-          難しい設定に時間を溶かすのはもうやめて、この「3ステップ」でサクッと仕事を終わらせてしまいましょう！
-        </p>
-
-        <div style={{ background: '#ecfdf5', padding: '2rem', borderRadius: '24px', border: '1px solid #d1fae5', textAlign: 'center', margin: '2rem 0' }}>
-          <p style={{ fontWeight: 700, color: '#065f46', marginBottom: '1.5rem' }}>まずは無料のWeb版で「えっ、こんなに簡単なの？」という感動を味わってください。</p>
-          <button
-            onClick={() => {
-              setShowBlog(false);
-              setActiveTab(null);
-              setPendingScroll(true);
-            }}
-            className="btn-primary-cta"
-          >
-            今すぐWeb版を試す
-          </button>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
-        </div>
-      </section>
-    </div>
-  </div>
-);

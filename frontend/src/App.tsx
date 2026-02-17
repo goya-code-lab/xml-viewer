@@ -1108,85 +1108,85 @@ const App: React.FC = () => {
                   <li>ご入力いただいたメールアドレスに誤りがなかったか</li>
                   <li>ドメイン指定受信設定（@goya-code-lab.jp からのメールを許可）</li>
                 </ul>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' } >
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#64748b', lineHeight: '1.6' }}>
                   解決しない場合は、こちらの<a href="https://forms.gle/xMzEXUMWRAzct21q7" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。<br />
-                決済状況を確認の上、対応させていただきます。
-              </p>
+                  決済状況を確認の上、対応させていただきます。
+                </p>
+              </div>
+            </div>
+            <div className="content-page" style={{ display: activeTab === 'scta' ? 'block' : 'none' }}>
+              <h2>特定商取引法に基づく表記</h2>
+              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', width: '30%', color: '#64748b' }}>販売業者</th>
+                    <td style={{ padding: '12px' }}>Goya Code Lab</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
+                    <td style={{ padding: '12px' }}>田中 聡</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
+                    <td style={{ padding: '12px' }}>
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
+                      <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>電話番号</th>
+                    <td style={{ padding: '12px' }}>
+                      特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>メールアドレス</th>
+                    <td style={{ padding: '12px' }}>support@goya-code-lab.jp</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
+                    <td style={{ padding: '12px' }}>
+                      1,980円（税込）
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
+                    <td style={{ padding: '12px' }}>
+                      なし（ダウンロード販売のため）
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
+                    <td style={{ padding: '12px' }}>クレジットカード決済</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
+                    <td style={{ padding: '12px' }}>商品注文確定時にお支払いが確定します。</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
+                    <td style={{ padding: '12px' }}>代金決済完了後、即座にライセンスキーをメールにて送付します。</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
+                    <td style={{ padding: '12px' }}>
+                      商品（ライセンスキー）の性質上、決済完了後の返品・キャンセルはお受けできません。<br />
+                      購入前に試用版にて動作を確認の上、お申し込みください。
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>動作環境</th>
+                    <td style={{ padding: '12px' }}>商品ページ、または配布ソフトウェアの説明書に記載。</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div className="content-page" style={{ display: activeTab === 'scta' ? 'block' : 'none' }}>
-            <h2>特定商取引法に基づく表記</h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem', fontSize: '0.9rem' }}>
-              <tbody>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', width: '30%', color: '#64748b' }}>販売業者</th>
-                  <td style={{ padding: '12px' }}>Goya Code Lab</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>運営責任者</th>
-                  <td style={{ padding: '12px' }}>田中 聡</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>所在地</th>
-                  <td style={{ padding: '12px' }}>
-                    特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。<br />
-                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>※開示をご希望の場合は下記メールアドレスまでご連絡ください。</span>
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>電話番号</th>
-                  <td style={{ padding: '12px' }}>
-                    特定商取引法第11条の但書きに基づき、ご請求があれば遅滞なく開示いたします。
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>メールアドレス</th>
-                  <td style={{ padding: '12px' }}>support@goya-code-lab.jp</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>販売価格</th>
-                  <td style={{ padding: '12px' }}>
-                    1,980円（税込）
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品代金以外の必要料金</th>
-                  <td style={{ padding: '12px' }}>
-                    なし（ダウンロード販売のため）
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払方法</th>
-                  <td style={{ padding: '12px' }}>クレジットカード決済</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>支払時期</th>
-                  <td style={{ padding: '12px' }}>商品注文確定時にお支払いが確定します。</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>商品の引渡時期</th>
-                  <td style={{ padding: '12px' }}>代金決済完了後、即座にライセンスキーをメールにて送付します。</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>返品・交換・キャンセル</th>
-                  <td style={{ padding: '12px' }}>
-                    商品（ライセンスキー）の性質上、決済完了後の返品・キャンセルはお受けできません。<br />
-                    購入前に試用版にて動作を確認の上、お申し込みください。
-                  </td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <th style={{ padding: '12px', textAlign: 'left', color: '#64748b' }}>動作環境</th>
-                  <td style={{ padding: '12px' }}>商品ページ、または配布ソフトウェアの説明書に記載。</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
-      </div>
-    </div >
+      </div >
 
-      {/* Footer Navigation Updates */ }
-      < footer className = "footer-section" >
+      {/* Footer Navigation Updates */}
+      < footer className="footer-section" >
         <div className="footer-content">
           <div className="footer-column">
             <div className="footer-group-title">
@@ -1237,7 +1237,7 @@ const App: React.FC = () => {
         <div style={{ width: '100%', textAlign: 'center', color: '#94a3b8', fontSize: '0.85rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
           © 2026 Goya Code Lab
         </div>
-      </footer >
+      </footer>
     </>
   );
 };

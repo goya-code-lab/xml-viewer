@@ -109,6 +109,11 @@ const App: React.FC = () => {
 
         <img src="/assets/edge_settings.png" alt="Edge設定画面" className="blog-image" style={{ width: '100%', borderRadius: '12px', margin: '2rem 0', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
 
+        <p>
+          社会保険料の通知をたった1枚確認するためだけに、毎回面倒な設定を強いられるのか。<br />
+          こんな面倒は、もう終止符を打ちませんか？
+        </p>
+
         <h2>なぜe-GovのXMLは、普通に開けないのか？</h2>
         <p>
           日本の電子公文書（XML）は、それ単体ではただの記号の羅列です。人間が読める形式にするには、<strong>「XSLスタイルシート」</strong>という設計図を正しく読み込ませる必要があります。

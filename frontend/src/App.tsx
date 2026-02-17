@@ -147,9 +147,7 @@ const App: React.FC = () => {
               onClick={() => {
                 setShowBlog(false);
                 setActiveTab(null);
-                setTimeout(() => {
-                  document.getElementById('web-version')?.scrollIntoView({ behavior: 'smooth' });
-                }, 0);
+                setPendingScroll(true);
               }}
               className="btn-primary-cta"
             >
@@ -199,9 +197,7 @@ const App: React.FC = () => {
               onClick={() => {
                 setShowBlog(false);
                 setActiveTab(null);
-                setTimeout(() => {
-                  document.getElementById('web-version')?.scrollIntoView({ behavior: 'smooth' });
-                }, 0);
+                setPendingScroll(true);
               }}
               className="btn-primary-cta"
             >

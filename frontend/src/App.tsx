@@ -105,9 +105,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="blog-card" onClick={() => setCurrentPostId('print-steps')}>
-          <div className="blog-card-image" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Printer size={48} color="#0d9488" />
-          </div>
+          <div className="blog-card-image" style={{ backgroundImage: 'url(/assets/20260217_blog02_01.jpg)' }} />
           <div className="blog-card-content">
             <span className="blog-card-date">2026.02.17</span>
             <h3>IT音痴でも大丈夫。Edgeの設定をいじらずにXMLを印刷する3つのステップ</h3>

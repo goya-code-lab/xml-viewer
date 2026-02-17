@@ -453,7 +453,7 @@ const App: React.FC = () => {
         <div className="blob blob-tertiary" />
       </div>
 
-      <div className={`main-container ${activeTab || showBlog ? 'modal-active' : ''}`}>
+      <div className={`main-container ${activeTab ? 'modal-active' : ''}`}>
         {showBlog ? (
           renderBlog()
         ) : (

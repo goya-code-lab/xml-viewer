@@ -156,6 +156,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        <h2>さらにセキュアな制限なしのWindows版もご用意</h2>
         <h2>社労士・プロの現場が「Windows版」を選ぶ理由</h2>
         <p>
           「便利だけど、顧客の機密データをネットに上げるのは不安……」<br />
@@ -170,7 +171,7 @@ const App: React.FC = () => {
             <strong>ファイル数無制限：</strong> 大量の決定通知書も、リスト形式でサクサク切り替え。
           </div>
           <div className="feature-row">
-            <strong>買い切り1,980円：</strong> 1度のランチ代程度の投資で、毎月の「IEモード設定のイライラ」から解放されます。
+            <strong>買い切り1,980円：</strong> 1回の投資で、面倒な「IEモード設定のイライラ」から解放されます。
           </div>
         </div>
 

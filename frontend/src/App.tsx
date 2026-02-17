@@ -65,6 +65,7 @@ const App: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | 'scta' | null>(null);
   const [showBlog, setShowBlog] = useState(false);
+  const [currentPostId, setCurrentPostId] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [pendingScroll, setPendingScroll] = useState(false);
 
@@ -77,8 +78,56 @@ const App: React.FC = () => {
     }
   }, [activeTab, showBlog]);
 
-  const renderBlog = () => (
+  const renderBlog = () => {
+    if (!currentPostId) return renderBlogIndex();
+    if (currentPostId === 'ie-mode') return renderIEModeArticle();
+    if (currentPostId === 'print-steps') return renderPrintStepsArticle();
+    return renderBlogIndex();
+  };
+
+  const renderBlogIndex = () => (
     <div className="blog-post-page">
+      <div className="blog-header">
+        <span className="blog-category">Blog Archive</span>
+        <h1 className="blog-title">ブログ・お役立ち情報</h1>
+        <p className="blog-subtitle">e-Gov公文書の活用やIT効率化のヒントをお届けします</p>
+      </div>
+
+      <div className="blog-index-list">
+        <div className="blog-card" onClick={() => setCurrentPostId('ie-mode')}>
+          <div className="blog-card-image" style={{ backgroundImage: 'url(/assets/tired_man.jpg)' }} />
+          <div className="blog-card-content">
+            <span className="blog-card-date">2026.02.17</span>
+            <h3>EdgeのIEモード設定に疲れた人へ。e-GovのXML公文書を「設定不要・1秒」で開く裏技</h3>
+            <p>電子申請e-Govから届く「通知文書送達のお知らせ」メール。内容確認後の「苦行」を終わらせる方法を解説します。</p>
+            <span className="blog-card-more">記事を読む →</span>
+          </div>
+        </div>
+
+        <div className="blog-card" onClick={() => setCurrentPostId('print-steps')}>
+          <div className="blog-card-image" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Printer size={48} color="#0d9488" />
+          </div>
+          <div className="blog-card-content">
+            <span className="blog-card-date">2026.02.17</span>
+            <h3>IT音痴でも大丈夫。Edgeの設定をいじらずにXMLを印刷する3つのステップ</h3>
+            <p>ブラウザの設定なんて一切いじる必要はありません。たった3つのステップで印刷できる「魔法のツール」の使い方。</p>
+            <span className="blog-card-more">記事を読む →</span>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+        <button onClick={() => setShowBlog(false)} className="btn-text-link">← トップページに戻る</button>
+      </div>
+    </div>
+  );
+
+  const renderIEModeArticle = () => (
+    <div className="blog-post-page">
+      <div className="blog-nav-top">
+        <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+      </div>
       <div className="blog-header">
         <span className="blog-category">Tips & Release</span>
         <h1 className="blog-title">EdgeのIEモード設定に疲れた人へ。<br />e-GovのXML公文書を「設定不要・1秒」で開く裏技</h1>
@@ -1085,3 +1134,115 @@ const App: React.FC = () => {
 };
 
 export default App;
+      </div >
+    </div >
+  );
+
+const renderPrintStepsArticle = () => (
+  <div className="blog-post-page">
+    <div className="blog-nav-top">
+      <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+    </div>
+    <div className="blog-header" style={{ background: 'linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%)', padding: '3rem 2rem', borderRadius: '24px' }}>
+      <span className="blog-category" style={{ background: '#0d9488', color: 'white' }}>How to Use</span>
+      <h1 className="blog-title" style={{ color: '#0f172a' }}>IT音痴でも大丈夫。<br />Edgeの設定をいじらずにXMLを印刷する3つのステップ</h1>
+      <div className="blog-meta">
+        <span className="blog-date">2026.02.17</span>
+        <span className="blog-author">Goya Code Lab</span>
+      </div>
+    </div>
+
+    <div className="blog-content">
+      <p className="lead-text">
+        「e-Govの通知書を印刷したいだけなのに、なぜかブラウザの設定画面と1時間も格闘している……」<br />
+        そんな経験はありませんか？
+      </p>
+
+      <p>
+        マニュアルを読んでも「IEモード」だの「信頼済みサイト」だの、聞き慣れない専門用語ばかり。ITが苦手な方にとって、今の電子公文書はあまりにも不親切です。
+      </p>
+
+      <div style={{ background: '#fef2f2', padding: '1.5rem', borderRadius: '16px', border: '1px solid #fee2e2', margin: '2rem 0' }}>
+        <p style={{ margin: 0, color: '#991b1b' }}>
+          でも、安心してください。あなたは、ブラウザの設定なんて一切いじる必要はありません。<br />
+          たった3つのステップで、誰でも今すぐXMLを紙に印刷できる「魔法のツール」の使い方を教えます。
+        </p>
+      </div>
+
+      <div className="print-steps-container">
+        <div className="print-step-card">
+          <div className="step-number">1</div>
+          <h3>ステップ1：e-Govからダウンロードした「ZIP」を用意する</h3>
+          <p>まずは、e-Govから届いた通知ファイルをダウンロードしてください。ここで大切なポイントが1つあります。</p>
+          <div style={{ background: '#fffbeb', padding: '1rem', borderRadius: '12px', border: '1px solid #fef3c7', marginTop: '1rem' }}>
+            <strong style={{ color: '#92400e' }}>「ダウンロードしたZIPファイルを解凍しないでください」</strong>
+          </div>
+          <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>中身を取り出そうとせず、そのままデスクトップやダウンロードフォルダに置いておくだけで準備完了です。</p>
+        </div>
+
+        <div className="print-step-card">
+          <div className="step-number">2</div>
+          <h3>ステップ2：サイトに「ポン」と置くだけ</h3>
+          <p>次に、e-Gov公文書XMLビューアを開きます。</p>
+          <p>画面の真ん中に大きな枠がありますよね？ そこに、先ほどのZIPファイルをマウスで引きずって（ドラッグ＆ドロップ）、「ポン」と置く。 これだけです。</p>
+          <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem' }}>1秒後、あなたの目の前には、あんなに読めるはずのなかったXMLが「見慣れた通知書の形」になって現れます。</p>
+        </div>
+
+        <div className="print-step-card">
+          <div className="step-number">3</div>
+          <h3>ステップ3：あとは「印刷」ボタンを押すだけ</h3>
+          <p>表示されたら、画面にある「印刷」ボタン、あるいはブラウザの印刷機能（Ctrl + P）を使うだけ。</p>
+          <p>「IEモードだと印刷がずれる」「真っ白で出てくる」といったトラブルとも、これでおさらばです。最新のブラウザで動くので、印刷の仕上がりも非常に綺麗です。</p>
+        </div>
+      </div>
+
+      <section style={{ background: '#f8fafc', padding: '2rem', borderRadius: '24px', border: '1px solid #e2e8f0', margin: '3rem 0' }}>
+        <h2 style={{ color: '#1e293b', marginTop: 0 }}>どうしても「セキュリティが心配」というプロの方へ</h2>
+        <p>「ITは苦手だけど、お客様の大事な書類をネットに上げるのは気が引ける……」<br />その慎重さは、プロとして素晴らしい姿勢です。</p>
+
+        <p>もしあなたが社労士事務所や法人の事務担当者で、より高い安全性を求めるなら、<strong>「インターネットに繋がなくても動くWindows版」</strong>がおすすめです。</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '2rem 0' }}>
+          <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+            <h4 style={{ color: '#0d9488', margin: '0 10px' }}>安心</h4>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>パソコンの中で完結。データが外に出ない。</p>
+          </div>
+          <div style={{ background: 'white', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+            <h4 style={{ color: '#0d9488', margin: '0 0 10px 0' }}>簡単</h4>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>一度パソコンに入れれば、あとはアイコンをダブルクリックするだけ。</p>
+          </div>
+        </div>
+
+        <button onClick={() => { setShowBlog(false); setActiveTab('windows'); }} className="btn-outline-primary" style={{ width: '100%' }}>
+          Windows版の詳細を見る
+        </button>
+      </section>
+
+      <section className="conclusion">
+        <h3>まとめ</h3>
+        <p>
+          IT音痴なのは、あなたのせいではありません。道具が難しすぎるのが悪いのです。<br />
+          難しい設定に時間を溶かすのはもうやめて、この「3ステップ」でサクッと仕事を終わらせてしまいましょう！
+        </p>
+
+        <div style={{ background: '#ecfdf5', padding: '2rem', borderRadius: '24px', border: '1px solid #d1fae5', textAlign: 'center', margin: '2rem 0' }}>
+          <p style={{ fontWeight: 700, color: '#065f46', marginBottom: '1.5rem' }}>まずは無料のWeb版で「えっ、こんなに簡単なの？」という感動を味わってください。</p>
+          <button
+            onClick={() => {
+              setShowBlog(false);
+              setActiveTab(null);
+              setPendingScroll(true);
+            }}
+            className="btn-primary-cta"
+          >
+            今すぐWeb版を試す
+          </button>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <button onClick={() => setCurrentPostId(null)} className="btn-text-link">← 記事一覧に戻る</button>
+        </div>
+      </section>
+    </div>
+  </div>
+);

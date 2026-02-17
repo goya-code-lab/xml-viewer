@@ -168,7 +168,7 @@ const App: React.FC = () => {
             </button>
           </div>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-             <button onClick={() => setShowBlog(false)} className="btn-text-link">← トップページに戻る</button>
+            <button onClick={() => setShowBlog(false)} className="btn-text-link">← トップページに戻る</button>
           </div>
         </section>
       </div>
@@ -992,6 +992,9 @@ const App: React.FC = () => {
             </button>
             <button onClick={() => setActiveTab('buy')}>
               <span className="footer-icon-wrapper"><Printer size={16} /></span> ライセンス購入
+            </button>
+            <button onClick={() => { setShowBlog(true); setActiveTab(null); }}>
+              <span className="footer-icon-wrapper"><FileText size={16} /></span> ブログ・お役立ち情報
             </button>
           </div>
 

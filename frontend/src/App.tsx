@@ -618,8 +618,8 @@ const App: React.FC = () => {
         <section className="conclusion">
           <h3>まとめ</h3>
           <p>
-            IT音痴なのは、あなたのせいではありません。道具が難しすぎるのが悪いのです。<br />
-            難しい設定に時間を溶かすのはもうやめて、この「3ステップ」でサクッと仕事を終わらせてしまいましょう！
+            XMLファイルを見るのが難しいと感じるのは、あなたのせいではありません。<br />
+            難しい設定に時間を使うのはもうやめて、この「3ステップ」でサクッと仕事を終わらせてしまいましょう！
           </p>
 
           <div style={{ background: '#ecfdf5', padding: '2rem', borderRadius: '24px', border: '1px solid #d1fae5', textAlign: 'center', margin: '2rem 0' }}>

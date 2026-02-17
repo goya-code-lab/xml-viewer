@@ -66,6 +66,7 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms' | 'about' | 'windows' | 'buy' | 'scta' | null>(null);
   const [showBlog, setShowBlog] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [pendingScroll, setPendingScroll] = useState(false);
 
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const modalBodyRef = React.useRef<HTMLDivElement>(null);
@@ -254,17 +255,18 @@ const App: React.FC = () => {
 
   // Handle scroll to web-version when blog is closed
   useEffect(() => {
-    if (!showBlog && !activeTab) {
+    if (!showBlog && !activeTab && pendingScroll) {
       // Small delay to ensure the main section has rendered
       const timer = setTimeout(() => {
         const element = document.getElementById('web-version');
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
+        setPendingScroll(false);
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [showBlog, activeTab]);
+  }, [showBlog, activeTab, pendingScroll]);
 
   // SEO: FAQ Schema (JSON-LD)
   useEffect(() => {

@@ -34,6 +34,9 @@ test.xml
 # Large distribution files
 frontend/public/downloads/
 
+# Stripe CLI binary
+stripe.exe
+
 # Secrets
 .env
 backend/.env

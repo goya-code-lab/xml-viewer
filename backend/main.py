@@ -421,6 +421,11 @@ async def stripe_webhook(request: Request, stripe_signature: str = Header(None))
     # 支払い完了イベントを処理
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
+
+        # XML Viewerの購入リンク以外は処理しない
+        if session.get("payment_link") != "plink_1SyDrsBO4kXo3b37mTKDy6h0":
+            return {"status": "ignored"}
+
         customer_email = session.get('customer_details', {}).get('email')
         
         if customer_email:
